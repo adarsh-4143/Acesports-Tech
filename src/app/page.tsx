@@ -215,7 +215,7 @@ function AboutSection() {
             </h2>
             
             <p className="text-slate-600 leading-relaxed mb-8 text-[15px]">
-              We are India's best sports infrastructure company with 10+ years of expertise in Artificial Turf Construction in India. We design and make world-class multi-sport courts, including pickleball, badminton, football, basketball, and cricket, along with premium landscape grass, durable turf nets, and complete project consultancy...
+              We are India&apos;s best sports infrastructure company with 10+ years of expertise in Artificial Turf Construction in India. We design and make world-class multi-sport courts, including pickleball, badminton, football, basketball, and cricket, along with premium landscape grass, durable turf nets, and complete project consultancy...
             </p>
 
             <ul className="space-y-3 mb-10">

@@ -163,7 +163,7 @@ export default function AboutPage() {
                 </div>
                 
                 <p className="text-slate-600 text-lg lg:text-xl italic leading-relaxed relative z-10 mb-8">
-                  "At ACE Sports Tech, our vision goes beyond just building infrastructure. We are engineering the foundation for India's future athletes. Every track we lay and every turf we install is a commitment to uncompromising excellence, performance, and durability. We believe that world-class facilities are the essential first step towards world-class sporting achievements."
+                  &quot;At ACE Sports Tech, our vision goes beyond just building infrastructure. We are engineering the foundation for India&apos;s future athletes. Every track we lay and every turf we install is a commitment to uncompromising excellence, performance, and durability. We believe that world-class facilities are the essential first step towards world-class sporting achievements.&quot;
                 </p>
                 
                 <div className="flex items-center gap-5 border-t border-slate-100 pt-6">
