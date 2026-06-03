@@ -1,0 +1,282 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0B1F3A;
+  --navy-deep: #060f1e;
+  --electric: #39FF14;
+  --electric-dark: #2ACC0F;
+  --neon-green: #39FF14;
+  --gold: #39FF14;
+  --white: #ffffff;
+  --grey-light: #8892a4;
+  --grey-dark: #1a2540;
+
+  --font-display: "Oswald", sans-serif;
+  --font-condensed: "Barlow Condensed", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --glow-blue: 0 0 40px rgba(0, 212, 255, 0.4);
+  --glow-green: 0 0 40px rgba(57, 255, 20, 0.3);
+  --glow-gold: 0 0 40px rgba(255, 184, 0, 0.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--navy-deep);
+  color: var(--white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+::selection { background: var(--electric); color: var(--navy-deep); }
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--navy-deep); }
+::-webkit-scrollbar-thumb { background: var(--electric); }
+
+/* ── GLOW UTILITIES ── */
+.glow-blue   { box-shadow: var(--glow-blue); }
+.glow-green  { box-shadow: var(--glow-green); }
+.glow-gold   { box-shadow: var(--glow-gold); }
+.text-glow-blue  { text-shadow: 0 0 20px rgba(57,255,20,0.8); }
+.text-glow-green { text-shadow: 0 0 20px rgba(57,255,20,0.8); }
+
+/* ── GRADIENT TEXT ── */
+.gradient-text-electric {
+  background: linear-gradient(90deg, #39FF14, #00FF66, #39FF14);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+.gradient-text-fire {
+  background: linear-gradient(90deg, #39FF14, #00CC44, #39FF14);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── GLASSMORPHISM ── */
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.glass-dark {
+  background: rgba(6,15,30,0.7);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(57,255,20,0.15);
+}
+.glass-electric {
+  background: rgba(57,255,20,0.06);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(57,255,20,0.2);
+}
+.glass-light {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+/* ── ANIMATED GRADIENT BORDER ── */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(var(--navy-deep), var(--navy-deep)) padding-box,
+    linear-gradient(135deg, #39FF14, #0B1F3A, #39FF14) border-box;
+  border: 1px solid transparent;
+}
+
+/* ── BUTTONS ── */
+.btn-electric {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(180deg, #5cff3d 0%, #39FF14 100%);
+  color: var(--navy-deep);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  border-radius: 9999px;
+  border: none;
+  box-shadow: 
+    0 4px 14px rgba(57, 255, 20, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-electric:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 20px rgba(57, 255, 20, 0.6),
+    inset 0 2px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+  background: linear-gradient(180deg, #71ff57 0%, #46ff24 100%);
+}
+
+.btn-electric:active {
+  transform: translateY(1px);
+  box-shadow: 
+    0 2px 8px rgba(57, 255, 20, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-electric {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 30px;
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-electric:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--white);
+  box-shadow: 0 4px 14px rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+
+/* ── NOISE TEXTURE ── */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── GRID PATTERN ── */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(57,255,20,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57,255,20,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.grid-pattern-light {
+  background-image:
+    linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── SCANLINES ── */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── MARQUEE ── */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 25s linear infinite; }
+.marquee-track-rev { animation: marquee 25s linear infinite reverse; }
+
+/* ── SHIMMER ── */
+@keyframes shimmer { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+/* ── FLOAT ── */
+@keyframes float { 0%,100%{transform:translateY(0px) rotate(0deg)} 33%{transform:translateY(-15px) rotate(1deg)} 66%{transform:translateY(-8px) rotate(-1deg)} }
+.float { animation: float 6s ease-in-out infinite; }
+
+/* ── PULSE RING ── */
+@keyframes pulse-ring { 0%{transform:scale(0.8);opacity:1} 100%{transform:scale(2.5);opacity:0} }
+.pulse-ring::before,.pulse-ring::after {
+  content:'';
+  position:absolute;
+  inset:-12px;
+  border-radius:inherit;
+  border:1px solid currentColor;
+  animation: pulse-ring 2s ease-out infinite;
+}
+.pulse-ring::after { animation-delay: 1s; }
+
+/* ── TYPING CURSOR ── */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.cursor { display:inline-block; animation: blink 1s step-end infinite; }
+
+/* ── VIDEO OVERLAY ── */
+.video-overlay {
+  background: linear-gradient(
+    to right,
+    rgba(6,15,30,0.95) 0%,
+    rgba(6,15,30,0.7) 50%,
+    rgba(6,15,30,0.4) 100%
+  );
+}
+
+/* ── CLIP PATHS ── */
+.clip-arrow { clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%); }
+.clip-skew { clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); }
+.clip-skew-rev { clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%); }
+.clip-diagonal { clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%); }
+
+/* ── COUNTER ── */
+.counter-number {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ── SPORT CARD TILT ── */
+.tilt-card { transform-style: preserve-3d; transition: transform 0.1s ease; }
+
+/* ── NEON LINE ── */
+.neon-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #39FF14, #39FF14, transparent);
+  box-shadow: 0 0 10px rgba(57,255,20,0.5);
+}
+
+/* ── SECTION SPACING ── */
+.section-pad { padding: 40px 0; }
+@media(max-width:768px) { .section-pad { padding: 25px 0; } }
+
+/* ── SPORT BADGE ── */
+.sport-badge {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
