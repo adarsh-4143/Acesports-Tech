@@ -3,7 +3,8 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import CTABanner from "@/components/CTABanner";
 import SectionHeading from "@/components/SectionHeading";
-import { services } from "@/lib/data";
+import { servicesService } from "@/services/servicesService";
+import { getAssetUrl } from "@/config/apiConfig";
 import { CheckCircle, ArrowRight, Zap } from "lucide-react";
 import AnimatedBackgroundLight from "@/components/AnimatedBackgroundLight";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -15,7 +16,43 @@ export const metadata: Metadata = {
 
 const accentColors = ["#39FF14","#39FF14","#39FF14","#BF5AF2","#FF3B5C","#39FF14","#39FF14"];
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const [servicesRes, featuresRes, mediaRes, featureMediaRes] = await Promise.all([
+    servicesService.getAllServices(),
+    servicesService.getAllFeatures(),
+    servicesService.getAllServiceMedia(),
+    servicesService.getAllFeatureMedia(),
+  ]);
+
+  const rawServices = servicesRes.data || [];
+  const allFeatures = featuresRes.data || [];
+  const allMedia = mediaRes.data || [];
+  const allFeatureMedia = featureMediaRes.data || [];
+
+  const dynamicServices = rawServices.map((service) => {
+    const serviceFeatures = allFeatures
+      .filter((f) => f.serviceId === service.serviceId)
+      .map((f) => f.featureName || f.description || "");
+
+    const serviceMedia = allMedia
+      .filter((m) => m.serviceId === service.serviceId)
+      .sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+
+    const image = (serviceMedia.length > 0 && serviceMedia[0].mediaUrl
+      ? getAssetUrl(serviceMedia[0].mediaUrl)
+      : null) || "/services/multisport.png"; // fallback image
+
+    return {
+      id: service.slug || service.serviceId?.toString() || "",
+      shortTitle: service.title || "Service",
+      title: service.title || "Service",
+      description: service.shortDescription || "",
+      longDescription: service.description || "",
+      features: serviceFeatures.length > 0 ? serviceFeatures : ["Professional installation", "Turnkey solutions"],
+      image,
+    };
+  });
+
   return (
     <>
       <Hero
@@ -31,7 +68,7 @@ export default function ServicesPage() {
       <section className="sticky top-20 z-30 border-b bg-white border-slate-200 shadow-sm" style={{ backdropFilter: "blur(20px)" }}>
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="flex items-center gap-1 overflow-x-auto py-3 scrollbar-none">
-            {services.map((s, i) => (
+            {dynamicServices.map((s, i) => (
               <a key={s.id} href={`#${s.id}`}
                 className="shrink-0 px-4 py-2 text-xs font-display font-semibold tracking-[0.12em] uppercase transition-all duration-300 border border-slate-200 text-slate-500 hover:[border-color:var(--hover-color)] hover:[color:var(--hover-color)] hover:bg-slate-50 rounded"
                 style={{ "--hover-color": accentColors[i] } as React.CSSProperties}
@@ -44,7 +81,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Services detail */}
-      {services.map((service, i) => {
+      {dynamicServices.map((service, i) => {
         const color = accentColors[i];
         const isEven = i % 2 === 0;
         return (
@@ -81,9 +118,9 @@ export default function ServicesPage() {
                   <div className="h-0.5 w-16 mb-5" style={{ background: `linear-gradient(90deg, ${color}, transparent)`, boxShadow: `0 0 8px ${color}60` }} />
                   <p className={`${isEven ? 'text-slate-600' : 'text-white/60'} leading-relaxed mb-3`}>{service.description}</p>
                   <p className={`${isEven ? 'text-slate-500' : 'text-white/40'} text-sm leading-relaxed mb-8`}>{service.longDescription}</p>
-                  <Link href="/contact" className="btn-electric">
+                  <Link href={`/services/${service.id}`} className="btn-electric">
                     <Zap size={13} />
-                    Enquire Now
+                    View Details
                   </Link>
                 </div>
 

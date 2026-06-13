@@ -4,13 +4,17 @@ import React from "react";
 import Link from "next/link";
 import { Trash2, ArrowLeft, ArrowRight, Zap } from "lucide-react";
 import AnimatedBackgroundLight from "@/components/AnimatedBackgroundLight";
+import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
 import SectionHeading from "@/components/SectionHeading";
 
 export default function CartPage() {
   const { cart, removeFromCart } = useCart();
+  const { isLoggedIn, isAuthLoading } = useAuth();
   
   const hasItems = cart.length > 0;
+
+  if (isAuthLoading) return null;
 
   return (
     <div className="min-h-screen pt-24 pb-12 relative bg-slate-50">
@@ -26,7 +30,18 @@ export default function CartPage() {
 
         <SectionHeading eyebrow="Your Cart" title="Review Your Order" subtitle="Verify your selected infrastructure materials before requesting a quote." theme="light" />
 
-        {!hasItems ? (
+        {!isLoggedIn ? (
+          <div className="bg-white border border-slate-200 p-12 text-center shadow-sm mt-8">
+            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Zap size={24} className="text-slate-400" />
+            </div>
+            <h3 className="font-display font-bold text-xl text-slate-900 mb-2">Login Required</h3>
+            <p className="text-slate-500 mb-6">Please log in to see your cart and add products.</p>
+            <Link href="/login" className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-[#39FF14] text-sm font-bold uppercase tracking-wider hover:bg-[#39FF14] hover:text-black transition-colors">
+              Go to Login
+            </Link>
+          </div>
+        ) : !hasItems ? (
           <div className="bg-white border border-slate-200 p-12 text-center shadow-sm mt-8">
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Zap size={24} className="text-slate-400" />
@@ -93,23 +108,27 @@ export default function CartPage() {
                 <div className="space-y-4 mb-6 text-sm">
                   <div className="flex justify-between text-white/60">
                     <span>Items ({cart.reduce((a, b) => a + b.quantity, 0)})</span>
-                    <span>Custom Quote</span>
+                    <span>₹{cart.reduce((acc, item) => acc + (parseFloat(item.price) || 0) * item.quantity, 0).toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between text-white/60">
-                    <span>Installation</span>
-                    <span>To be calculated</span>
+                    <span>Taxes (18% Est.)</span>
+                    <span>₹{(cart.reduce((acc, item) => acc + (parseFloat(item.price) || 0) * item.quantity, 0) * 0.18).toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between text-white/60">
+                    <span>Installation & Shipping</span>
+                    <span>Calculated at checkout</span>
                   </div>
                   <div className="flex justify-between font-bold text-[#39FF14] border-t border-white/10 pt-4 mt-4">
                     <span>Total Estimated</span>
-                    <span>Request Quote</span>
+                    <span>₹{(cart.reduce((acc, item) => acc + (parseFloat(item.price) || 0) * item.quantity, 0) * 1.18).toLocaleString()}</span>
                   </div>
                 </div>
 
                 <p className="text-white/40 text-xs leading-relaxed mb-6">
-                  Industrial sports materials often require custom calculation based on area size and site conditions.
+                  Final shipping and installation charges will be calculated during checkout based on your delivery address.
                 </p>
 
-                <Link href="/contact" className="w-full py-3 bg-[#39FF14] text-black font-display font-bold text-sm uppercase tracking-widest hover:bg-white transition-colors flex items-center justify-center gap-2">
+                <Link href="/checkout" className="w-full py-3 bg-[#39FF14] text-black font-display font-bold text-sm uppercase tracking-widest hover:bg-white transition-colors flex items-center justify-center gap-2">
                   Proceed to Checkout <ArrowRight size={16} />
                 </Link>
               </div>

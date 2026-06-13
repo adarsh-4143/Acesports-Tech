@@ -14,6 +14,13 @@ export default function EnquiryPopup() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Allow triggering from anywhere via custom event
+  useEffect(() => {
+    const openHandler = () => setIsOpen(true);
+    window.addEventListener("openEnquiryPopup", openHandler);
+    return () => window.removeEventListener("openEnquiryPopup", openHandler);
+  }, []);
+
   // Prevent scrolling when popup is open
   useEffect(() => {
     if (isOpen) {

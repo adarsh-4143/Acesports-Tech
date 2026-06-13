@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronRight, Zap, ShoppingCart, User, LogOut } from "lucide-react";
+import { Menu, X, ChevronRight, ChevronDown, Zap, ShoppingCart, User, LogOut } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
 
@@ -14,6 +14,10 @@ const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
   { label: "Products", href: "/products" },
+  { label: "Media", href: "#", dropdown: [
+    { label: "Image Gallery", href: "/media/image-gallery" },
+    { label: "Video Gallery", href: "/media/video-gallery" }
+  ]},
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
@@ -67,11 +71,40 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-2 p-1.5 bg-slate-50/50 backdrop-blur-md border border-slate-200/50 rounded-full shadow-inner">
             {navLinks.map((link) => {
-              const active = pathname === link.href;
-              return (
+              const active = pathname === link.href || (link.dropdown && pathname.startsWith("/media"));
+              return link.dropdown ? (
+                <div key={link.label} className="relative group">
+                  <div className={`flex items-center gap-1 cursor-pointer relative px-5 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-300 rounded-full overflow-hidden ${
+                    active ? "text-[#060f1e]" : "text-slate-500 hover:text-slate-900"
+                  }`}>
+                    {active && (
+                      <motion.div
+                        layoutId="nav-pill"
+                        className="absolute inset-0 bg-[#39FF14]/20 border border-[#39FF14]/30 rounded-full"
+                      />
+                    )}
+                    {!active && (
+                      <span className="absolute inset-0 bg-slate-200/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    )}
+                    <span className="relative z-10">{link.label}</span>
+                    <ChevronDown size={14} className="relative z-10 opacity-70 group-hover:rotate-180 transition-transform duration-300" />
+                  </div>
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white/90 backdrop-blur-md rounded-xl shadow-lg border border-slate-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden flex flex-col p-2">
+                    {link.dropdown.map((subItem) => (
+                      <Link
+                        key={subItem.href}
+                        href={subItem.href}
+                        className="px-4 py-3 text-xs font-semibold tracking-widest uppercase text-slate-500 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
+                      >
+                        {subItem.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={link.href!}
                   className={`relative px-5 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-300 rounded-full overflow-hidden group ${
                     active ? "text-[#060f1e]" : "text-slate-500 hover:text-slate-900"
                   }`}
@@ -106,9 +139,14 @@ export default function Navbar() {
               </Link>
               
               {isLoggedIn ? (
-                <button onClick={logout} className="text-slate-600 hover:text-red-500 transition-colors" title="Logout">
-                  <LogOut size={18} />
-                </button>
+                <>
+                  <Link href="/profile" className="text-slate-600 hover:text-blue-600 transition-colors" title="Profile">
+                    <User size={18} />
+                  </Link>
+                  <button onClick={logout} className="text-slate-600 hover:text-red-500 transition-colors" title="Logout">
+                    <LogOut size={18} />
+                  </button>
+                </>
               ) : (
                 <Link href="/login" className="text-slate-600 hover:text-blue-600 transition-colors" title="Login">
                   <User size={18} />
@@ -116,10 +154,13 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link href="/contact" className="btn-electric text-xs">
+            <button 
+              onClick={() => window.dispatchEvent(new Event("openEnquiryPopup"))} 
+              className="btn-electric text-xs"
+            >
               <Zap size={13} />
               Get Quote
-            </Link>
+            </button>
           </div>
 
           {/* Mobile hamburger & Icons */}
@@ -159,29 +200,57 @@ export default function Navbar() {
             <nav className="relative z-10 flex flex-col px-8 pt-8 gap-2">
               {navLinks.map((link, i) => (
                 <motion.div
-                  key={link.href}
+                  key={link.label}
                   initial={{ opacity: 0, x: -40 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <Link
-                    href={link.href}
-                    className="flex items-center justify-between py-4 border-b border-white/5 group"
-                  >
-                    <span className="font-condensed text-4xl font-bold text-white group-hover:text-[#39FF14] transition-colors tracking-wide">
-                      {link.label}
-                    </span>
-                    <ChevronRight size={20} className="text-white/30 group-hover:text-[#39FF14] transition-colors" />
-                  </Link>
+                  {link.dropdown ? (
+                    <div className="py-4 border-b border-white/5">
+                      <span className="font-condensed text-4xl font-bold text-white tracking-wide block mb-4">
+                        {link.label}
+                      </span>
+                      <div className="flex flex-col gap-3 pl-4">
+                        {link.dropdown.map((subItem) => (
+                          <Link
+                            key={subItem.href}
+                            href={subItem.href}
+                            className="flex items-center justify-between group"
+                          >
+                            <span className="font-condensed text-2xl font-bold text-white/70 group-hover:text-[#39FF14] transition-colors tracking-wide">
+                              {subItem.label}
+                            </span>
+                            <ChevronRight size={16} className="text-white/30 group-hover:text-[#39FF14] transition-colors" />
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <Link
+                      href={link.href!}
+                      className="flex items-center justify-between py-4 border-b border-white/5 group"
+                    >
+                      <span className="font-condensed text-4xl font-bold text-white group-hover:text-[#39FF14] transition-colors tracking-wide">
+                        {link.label}
+                      </span>
+                      <ChevronRight size={20} className="text-white/30 group-hover:text-[#39FF14] transition-colors" />
+                    </Link>
+                  )}
                 </motion.div>
               ))}
             </nav>
 
             <div className="relative z-10 mt-auto px-8 pb-12">
-              <Link href="/contact" className="btn-electric w-full justify-center">
+              <button 
+                onClick={() => {
+                  window.dispatchEvent(new Event("openEnquiryPopup"));
+                  setMenuOpen(false);
+                }} 
+                className="btn-electric w-full justify-center"
+              >
                 <Zap size={15} />
                 Start a Project
-              </Link>
+              </button>
               <p className="text-white/30 text-xs mt-4 text-center tracking-widest uppercase">
                 +91 73680 40888
               </p>
