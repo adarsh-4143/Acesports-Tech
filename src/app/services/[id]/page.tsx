@@ -122,7 +122,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <section>
                   <div className="flex items-center gap-3 mb-8">
                     <CheckCircle2 className="text-[#39FF14]" size={28} />
-                    <h2 className="text-3xl font-display font-bold text-slate-900">What's Included</h2>
+                    <h2 className="text-3xl font-display font-bold text-slate-900">What&apos;s Included</h2>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

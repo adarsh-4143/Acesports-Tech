@@ -365,7 +365,7 @@ export default function ProfilePage() {
                   <h1 className="text-2xl font-display font-bold text-slate-900 uppercase tracking-wide mb-6 border-b border-slate-100 pb-4">My Orders</h1>
                   <div className="space-y-6">
                     {orders.length === 0 ? (
-                       <p className="text-sm text-slate-500 p-4 border border-slate-200">You haven't placed any orders yet.</p>
+                       <p className="text-sm text-slate-500 p-4 border border-slate-200">You haven&apos;t placed any orders yet.</p>
                     ) : orders.map((order) => (
                       <div key={order.id || order.orderId} className="border border-slate-200 bg-white group hover:shadow-lg transition-all duration-300">
                         <div className="bg-slate-50 px-6 py-4 flex flex-wrap items-center justify-between gap-4 border-b border-slate-200">
