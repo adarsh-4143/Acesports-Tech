@@ -26,15 +26,18 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { orderService } from "@/services/orderService";
 import { userService } from "@/services/userService";
+import { addressService } from "@/services/addressService";
 
 // Mock Data
 const MOCK_USER = {
   name: "John Doe",
   email: "john.doe@example.com",
   phone: "+1 (555) 123-4567",
-  address: "123 Sports Avenue, Suite 100, New York, NY 10001",
+  address: "",
+  city: "",
+  state: "",
+  pincode: "",
   joinDate: "August 2024",
-  points: 1250,
 };
 
 const MOCK_ORDERS = [
@@ -79,8 +82,11 @@ export default function ProfilePage() {
     business_name: "",
     gst_number: "",
     address: MOCK_USER.address,
+    city: MOCK_USER.city,
+    state: MOCK_USER.state,
+    pincode: MOCK_USER.pincode,
+    addressId: null as number | null,
     joinDate: MOCK_USER.joinDate,
-    points: MOCK_USER.points,
   });
 
   React.useEffect(() => {
@@ -94,8 +100,8 @@ export default function ProfilePage() {
 
       // Fetch user specific details if we don't have them in context
       userService.getUser(user.user_id).then(res => {
-        if (res.data?.success) {
-          const u = res.data.data;
+        if (res.success) {
+          const u = res.data;
           setUserDetails(p => ({
             ...p,
             business_name: u.business_name || "",
@@ -106,9 +112,24 @@ export default function ProfilePage() {
 
       // Fetch orders
       orderService.getOrders(user.login_id).then(res => {
-        if (res.data?.success) {
-          const o = res.data.data.rows || res.data.data;
+        if (res.success) {
+          const o = res.data?.rows || res.data;
           setOrders(Array.isArray(o) ? o : []);
+        }
+      }).catch(e => console.error(e));
+
+      // Fetch address
+      addressService.getAddresses(user.user_id).then(res => {
+        if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+          const addr = res.data[0];
+          setUserDetails(p => ({
+            ...p,
+            addressId: addr.addressId,
+            address: addr.address || "",
+            city: addr.city || "",
+            state: addr.state || "",
+            pincode: addr.pincode || ""
+          }));
         }
       }).catch(e => console.error(e));
     }
@@ -192,7 +213,30 @@ export default function ProfilePage() {
           gst_number: userDetails.gst_number
         };
         const res = await userService.updateUser(user.user_id, payload);
-        if (res.data?.success) {
+        
+        // Also save address
+        if (userDetails.address || userDetails.city || userDetails.state || userDetails.pincode) {
+          const addrPayload = {
+            userId: user.user_id,
+            fullName: userDetails.name,
+            phone: userDetails.phone,
+            address: userDetails.address,
+            city: userDetails.city,
+            state: userDetails.state,
+            pincode: userDetails.pincode
+          };
+          
+          if (userDetails.addressId) {
+            await addressService.updateAddress(userDetails.addressId, addrPayload);
+          } else {
+            const addrRes = await addressService.createAddress(addrPayload);
+            if (addrRes.success && addrRes.data?.addressId) {
+              setUserDetails(prev => ({ ...prev, addressId: addrRes.data.addressId }));
+            }
+          }
+        }
+
+        if (res.success) {
           showToast("Profile details updated successfully.", "success");
           
           // Optionally update local storage context
@@ -201,7 +245,7 @@ export default function ProfilePage() {
           
           setIsEditing(false);
         } else {
-          showToast(res.data?.message || "Update failed", "error");
+          showToast(res.message || "Update failed", "error");
         }
       } catch (err: any) {
         showToast(err.response?.data?.message || err.message || "Failed to update profile", "error");
@@ -307,7 +351,7 @@ export default function ProfilePage() {
                 <div>
                   <h1 className="text-2xl font-display font-bold text-slate-900 uppercase tracking-wide mb-6 border-b border-slate-100 pb-4">Dashboard Overview</h1>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                     <div className="p-6 bg-slate-50 border border-slate-100 flex flex-col items-center justify-center text-center hover:border-[#39FF14]/50 transition-colors">
                       <Package size={28} className="text-slate-400 mb-3" />
                       <span className="text-3xl font-bold text-slate-900 font-display">{orders.length}</span>
@@ -317,12 +361,6 @@ export default function ProfilePage() {
                       <Truck size={28} className="text-blue-400 mb-3" />
                       <span className="text-3xl font-bold text-slate-900 font-display">{orders.filter(o => o.statusName === 'Shipped').length}</span>
                       <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest mt-1">In Transit</span>
-                    </div>
-                    <div className="p-6 bg-slate-900 border border-slate-800 flex flex-col items-center justify-center text-center shadow-[0_0_20px_rgba(57,255,20,0.1)] relative overflow-hidden">
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.15)_0,transparent_70%)]" />
-                      <CreditCard size={28} className="text-[#39FF14] mb-3 relative z-10" />
-                      <span className="text-3xl font-bold text-white font-display relative z-10">{userDetails.points}</span>
-                      <span className="text-xs font-semibold text-[#39FF14] uppercase tracking-widest mt-1 relative z-10">Reward Points</span>
                     </div>
                   </div>
 
@@ -527,6 +565,45 @@ export default function ProfilePage() {
                           onChange={(e) => handleDetailsChange("address", e.target.value)}
                           rows={3}
                           className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70 resize-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">City</label>
+                        <input 
+                          type="text" 
+                          disabled={!isEditing}
+                          required
+                          value={userDetails.city}
+                          onChange={(e) => handleDetailsChange("city", e.target.value)}
+                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70"
+                          placeholder="Your City"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">State</label>
+                        <input 
+                          type="text" 
+                          disabled={!isEditing}
+                          required
+                          value={userDetails.state}
+                          onChange={(e) => handleDetailsChange("state", e.target.value)}
+                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70"
+                          placeholder="Your State"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Pincode</label>
+                        <input 
+                          type="text" 
+                          disabled={!isEditing}
+                          required
+                          value={userDetails.pincode}
+                          onChange={(e) => handleDetailsChange("pincode", e.target.value)}
+                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70"
+                          placeholder="Pincode"
                         />
                       </div>
                     </div>

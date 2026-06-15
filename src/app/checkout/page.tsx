@@ -8,6 +8,7 @@ import AnimatedBackgroundLight from "@/components/AnimatedBackgroundLight";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { orderService } from "@/services/orderService";
+import { addressService } from "@/services/addressService";
 
 export default function CheckoutPage() {
   const { cart, clearCart } = useCart();
@@ -28,6 +29,20 @@ export default function CheckoutPage() {
         email: user.email || "",
         phone: user.mobile || "",
       }));
+
+      // Fetch address
+      addressService.getAddresses(user.user_id).then(res => {
+        if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+          const addr = res.data[0];
+          setForm(prev => ({
+            ...prev,
+            address: addr.address || prev.address,
+            city: addr.city || prev.city,
+            state: addr.state || prev.state,
+            pinCode: addr.pincode || prev.pinCode
+          }));
+        }
+      }).catch(e => console.error(e));
     }
   }, [user]);
 

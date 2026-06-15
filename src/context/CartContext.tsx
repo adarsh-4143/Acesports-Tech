@@ -35,8 +35,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     if (!isLoggedIn || !user) return;
     try {
       const response = await cartService.getCartItems(user.login_id);
-      if (response.data && response.data.success) {
-        const backendItems = response.data.data;
+      if (response.success && Array.isArray(response.data)) {
+        const backendItems = response.data;
         
         const groupedMap = new Map<string, CartItem>();
         

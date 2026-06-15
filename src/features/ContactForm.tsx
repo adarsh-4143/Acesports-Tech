@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle, Search, ChevronDown, AlertCircle, X } from "lucide-react";
+import { contactService } from "@/services/contactService";
 
 const serviceOptions = [
   "Stadium Development", "Synthetic Running Track", "Artificial Turf Installation",
@@ -81,9 +82,29 @@ export default function ContactForm() {
     }
 
     setLoading(true);
-    await new Promise(r => setTimeout(r, 1400));
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      const res = await contactService.createContact({
+        fullName: form.name,
+        emailAddress: form.email,
+        mobileNumber: form.phone,
+        businessName: form.organization,
+        address: form.location,
+        service: form.service,
+        description: form.message,
+        source: "Website",
+      });
+
+      if (res.success) {
+        setSubmitted(true);
+      } else {
+        showToast(res.message || "Failed to submit enquiry.", "error");
+      }
+    } catch (err: any) {
+      console.error(err);
+      showToast(err.response?.data?.message || err.message || "Failed to submit enquiry.", "error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const isFloating = (name: string) => focused === name || ((form as any)[name] && (form as any)[name].length > 0);
