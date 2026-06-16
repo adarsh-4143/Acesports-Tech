@@ -9,6 +9,8 @@ import { CheckCircle, ArrowRight, Zap } from "lucide-react";
 import AnimatedBackgroundLight from "@/components/AnimatedBackgroundLight";
 import AnimatedBackground from "@/components/AnimatedBackground";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Services",
   description: "ACE Sports Tech — stadium development, synthetic tracks, artificial turf, sports courts, academies and technology solutions.",

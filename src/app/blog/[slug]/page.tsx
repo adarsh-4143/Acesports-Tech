@@ -7,6 +7,8 @@ import CTABanner from "@/components/CTABanner";
 import { blogService } from "@/services/blogService";
 import { getAssetUrl } from "@/config/apiConfig";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: { slug: string };
 }

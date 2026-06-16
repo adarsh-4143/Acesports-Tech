@@ -9,6 +9,8 @@ import Lightbox from "@/components/Lightbox";
 import { mediaService } from "@/services/mediaService";
 import { getAssetUrl } from "@/config/apiConfig";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Image Gallery",
   description: "ACE Sports Tech image gallery — stadiums, tracks, turfs, courts and academies across India.",

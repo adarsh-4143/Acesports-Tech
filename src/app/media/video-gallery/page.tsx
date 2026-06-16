@@ -6,6 +6,8 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import { mediaService } from "@/services/mediaService";
 import { getAssetUrl } from "@/config/apiConfig";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Video Gallery",
   description: "Watch our projects come to life. Video gallery of ACE Sports Tech installations.",

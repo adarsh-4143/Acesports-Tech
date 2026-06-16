@@ -10,6 +10,8 @@ import { blogService } from "@/services/blogService";
 import { Blog } from "@/types/blog";
 import { getAssetUrl } from "@/config/apiConfig";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Blog & Insights",
   description: "Latest news, insights, and updates from ACE Sports Tech on sports infrastructure and technology.",
