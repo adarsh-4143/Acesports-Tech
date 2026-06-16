@@ -16,6 +16,7 @@ export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", organization: "", service: "", location: "", message: "" });
   const [focused, setFocused] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Record<string, boolean>>({});
   
   // Combobox state
   const [serviceSearch, setServiceSearch] = useState("");
@@ -46,6 +47,9 @@ export default function ContactForm() {
 
   const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: false }));
+    }
     
     if (name === "phone") {
       // Only allow numbers
@@ -66,18 +70,37 @@ export default function ContactForm() {
   const submit = async (e: React.MouseEvent) => {
     e.preventDefault();
     
-    if (!form.name || !form.email || !form.phone) {
-      showToast("Please fill in all required fields.");
-      return;
+    const newErrors: Record<string, boolean> = {};
+
+    if (!form.name) {
+      newErrors.name = true;
+      showToast("Full Name is required.", "error");
+    }
+    
+    if (!form.email) {
+      newErrors.email = true;
+      showToast("Email Address is required.", "error");
+    } else if (!validateEmail(form.email)) {
+      newErrors.email = true;
+      showToast("Please Enter Valid Email Address.", "error");
     }
 
-    if (form.phone.length !== 10) {
-      showToast("Please Enter Valid Mobile Number (10 digits).");
-      return;
+    if (!form.phone) {
+      newErrors.phone = true;
+      showToast("Mobile Number is required.", "error");
+    } else if (form.phone.length !== 10) {
+      newErrors.phone = true;
+      showToast("Please Enter Valid Mobile Number (10 digits).", "error");
     }
 
-    if (!validateEmail(form.email)) {
-      showToast("Please Enter Valid Email Address.");
+    if (!form.service) {
+      newErrors.service = true;
+      showToast("Service Selection is required.", "error");
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
       return;
     }
 
@@ -113,8 +136,12 @@ export default function ContactForm() {
     isFloating(name) ? "-top-2 text-[9px] text-white" : "top-3.5 text-[11px] text-white"
   }`;
 
-  const inputBaseClass = (name: string) => `w-full bg-white/5 px-4 py-3 text-xs font-body text-white rounded outline-none transition-all duration-300 placeholder-white ${
-    focused === name ? "bg-white/10 ring-0" : ""
+  const inputBaseClass = (name: string) => `w-full bg-white/5 px-4 py-3 text-xs font-body text-white rounded outline-none transition-all duration-300 placeholder-white border ${
+    errors[name] 
+      ? "border-red-500" 
+      : focused === name 
+        ? "bg-white/10 ring-0 border-[#007AFF]" 
+        : "border-white/10"
   }`;
 
   const filteredServices = serviceOptions.filter(s => s.toLowerCase().includes(serviceSearch.toLowerCase()));
@@ -199,7 +226,15 @@ export default function ContactForm() {
                 onBlur={() => setFocused(null)}
                 className={inputBaseClass(f.name)}
               />
-              <label className={floatingLabelClass(f.name)}>{f.label}</label>
+              <label className={floatingLabelClass(f.name)}>
+                {f.label.endsWith(" *") ? (
+                  <>
+                    {f.label.replace(" *", "")} <span className="text-red-500 font-bold">*</span>
+                  </>
+                ) : (
+                  f.label
+                )}
+              </label>
             </div>
           ))}
 
@@ -217,7 +252,9 @@ export default function ContactForm() {
               </span>
               <ChevronDown size={16} className="text-white/40" />
             </div>
-            <label className={floatingLabelClass("service")}>Service Required *</label>
+            <label className={floatingLabelClass("service")}>
+              Service Required <span className="text-red-500 font-bold">*</span>
+            </label>
 
             <AnimatePresence>
               {isDropdownOpen && (
@@ -250,6 +287,7 @@ export default function ContactForm() {
                             setServiceSearch("");
                             setIsDropdownOpen(false);
                             setFocused(null);
+                            setErrors(prev => ({ ...prev, service: false }));
                           }}
                           className={`px-4 py-2.5 text-xs cursor-pointer transition-colors ${
                             form.service === opt ? "bg-[#007AFF]/20 text-[#007AFF] font-bold" : "text-white/80 hover:bg-slate-700"

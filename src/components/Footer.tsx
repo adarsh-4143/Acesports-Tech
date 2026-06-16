@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, ArrowUpRight, Zap, ChevronRight } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowUpRight, Zap, ChevronRight, Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
 
 const footerLinks = {
   Company: [
@@ -81,33 +81,45 @@ export default function Footer() {
               Engineering high-performance sports environments. Transforming spaces into world-class sporting destinations across India.
             </p>
 
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-start gap-3">
-                <MapPin size={14} className="text-[#007AFF] mt-0.5 shrink-0" />
-                <p className="text-white/40 text-xs leading-relaxed">J39 Centre Portion, West Patel Nagar,<br />New Delhi – 110008</p>
+                <MapPin size={16} className="text-[#007AFF] mt-1 shrink-0" />
+                <p className="text-white/40 text-sm leading-relaxed">J39 Centre Portion, West Patel Nagar,<br />New Delhi – 110008</p>
               </div>
               <div className="flex items-start gap-3">
-                <Phone size={14} className="text-[#007AFF] mt-0.5 shrink-0" />
+                <Phone size={16} className="text-[#007AFF] mt-1 shrink-0" />
                 <div className="flex flex-col gap-1">
-                  <a href="tel:7368040888" className="text-white/40 text-xs hover:text-[#007AFF] transition-colors">+91 73680 40888</a>
-                  <a href="tel:9818933156" className="text-white/40 text-xs hover:text-[#007AFF] transition-colors">+91 98189 33156</a>
+                  <a href="tel:7368040888" className="text-white/40 text-sm hover:text-[#007AFF] transition-colors">+91 73680 40888</a>
+                  <a href="tel:9818933156" className="text-white/40 text-sm hover:text-[#007AFF] transition-colors">+91 98189 33156</a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Mail size={14} className="text-[#007AFF] mt-0.5 shrink-0" />
+                <Mail size={16} className="text-[#007AFF] mt-1 shrink-0" />
                 <div className="flex flex-col gap-1">
-                  <a href="mailto:enquire.acesports@gmail.com" className="text-white/40 text-xs hover:text-[#007AFF] transition-colors">enquire.acesports@gmail.com</a>
-                  <a href="mailto:info@acesportstech.com" className="text-white/40 text-xs hover:text-[#007AFF] transition-colors">info@acesportstech.com</a>
+                  <a href="mailto:enquire.acesports@gmail.com" className="text-white/40 text-sm hover:text-[#007AFF] transition-colors">enquire.acesports@gmail.com</a>
+                  <a href="mailto:info@acesportstech.com" className="text-white/40 text-sm hover:text-[#007AFF] transition-colors">info@acesportstech.com</a>
                 </div>
               </div>
             </div>
 
-            {/* Certifications */}
-            <div className="mt-8 flex flex-wrap gap-2">
-              {["FIFA", "IAAF", "FIBA", "ITF"].map((cert) => (
-                <span key={cert} className="text-[10px] font-display font-semibold tracking-widest px-2.5 py-1 border border-[rgba(0, 122, 255,0.2)] text-[#007AFF]/60">
-                  {cert}
-                </span>
+            {/* Social Media Links */}
+            <div className="mt-8 flex items-center gap-3">
+              {[
+                { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+                { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+                { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+                { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+              ].map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-8 h-8 rounded-lg flex items-center justify-center border border-[rgba(0,122,255,0.2)] text-[#007AFF]/60 hover:text-white hover:border-[#007AFF] hover:bg-[#007AFF]/10 transition-all duration-300"
+                >
+                  <Icon size={16} />
+                </a>
               ))}
             </div>
           </div>
@@ -157,10 +169,18 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="relative z-10 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-5 lg:px-10 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-white/20 text-xs tracking-wide text-center sm:text-left">
-            &copy; {new Date().getFullYear()} ACE Sports Tech Pvt. Ltd. All rights reserved.
-          </p>
+        <div className="max-w-7xl mx-auto px-5 lg:px-10 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+            <p className="text-white/20 text-xs tracking-wide">
+              &copy; {new Date().getFullYear()} ACE Sports Tech Pvt. Ltd. All rights reserved.
+            </p>
+            <div className="flex items-center gap-3 text-white/30 text-xs">
+              <span className="hidden sm:inline">|</span>
+              <Link href="/terms" className="hover:text-[#007AFF] transition-colors">Terms & Conditions</Link>
+              <span>|</span>
+              <Link href="/refund-policy" className="hover:text-[#007AFF] transition-colors">Cancellation & Refund Policy</Link>
+            </div>
+          </div>
           <p className="text-white/40 text-xs text-center sm:text-right">
             Designed and Developed by{" "}
             <a href="https://nighwantech.com" target="_blank" rel="noopener noreferrer" className="text-[#007AFF] hover:text-white transition-colors">

@@ -16,6 +16,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: "error" | "success" } | null>(null);
+  const [errors, setErrors] = useState<Record<string, boolean>>({});
 
   const showToast = (message: string, type: "error" | "success" = "error") => {
     setToast({ message, type });
@@ -30,24 +31,41 @@ export default function LoginPage() {
     const value = e.target.value;
     if (value.trim() === "" && value.length > 0) return;
     setEmail(value);
+    if (errors.email) {
+      setErrors(prev => ({ ...prev, email: false }));
+    }
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value.trim() === "" && value.length > 0) return;
     setPassword(value);
+    if (errors.password) {
+      setErrors(prev => ({ ...prev, password: false }));
+    }
   };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email || !password) {
-      showToast("Please fill in all required fields.");
-      return;
+    const newErrors: Record<string, boolean> = {};
+
+    if (!email) {
+      newErrors.email = true;
+      showToast("Email Address is required.", "error");
+    } else if (!validateEmail(email)) {
+      newErrors.email = true;
+      showToast("Please Enter Valid Email Address.", "error");
     }
 
-    if (!validateEmail(email)) {
-      showToast("Please Enter Valid Email Address.");
+    if (!password) {
+      newErrors.password = true;
+      showToast("Password is required.", "error");
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
       return;
     }
 
@@ -104,19 +122,27 @@ export default function LoginPage() {
 
           <form onSubmit={handleLogin} className="space-y-5">
             <div>
-              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Email Address *</label>
+              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">
+                Email Address <span className="text-red-500 font-bold">*</span>
+              </label>
               <input 
                 type="email" 
                 required
                 value={email}
                 onChange={handleEmailChange}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black"
+                className={`w-full px-4 py-3 bg-slate-50 border outline-none transition-all text-sm text-black ${
+                  errors.email 
+                    ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                    : "border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF]"
+                }`}
                 placeholder="you@example.com"
               />
             </div>
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider">Password *</label>
+                <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                  Password <span className="text-red-500 font-bold">*</span>
+                </label>
                 <a href="#" className="text-xs text-blue-600 hover:underline">Forgot?</a>
               </div>
               <input 
@@ -124,7 +150,11 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={handlePasswordChange}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black"
+                className={`w-full px-4 py-3 bg-slate-50 border outline-none transition-all text-sm text-black ${
+                  errors.password 
+                    ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                    : "border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF]"
+                }`}
                 placeholder="••••••••"
               />
             </div>

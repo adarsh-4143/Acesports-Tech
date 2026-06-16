@@ -1,16 +1,13 @@
-import type { Metadata } from "next";
+"use client";
+
 import Hero from "@/components/Hero";
 import CTABanner from "@/components/CTABanner";
 import SectionHeading from "@/components/SectionHeading";
-import { whyChooseUs, stats } from "@/lib/data";
-import { Award, CheckCircle, BarChart3, Cpu, Shield, MapPin, Zap, ChevronRight } from "lucide-react";
+import { whyChooseUs } from "@/lib/data";
+import { Award, CheckCircle, BarChart3, Cpu, Shield, MapPin } from "lucide-react";
 import AnimatedBackgroundLight from "@/components/AnimatedBackgroundLight";
 import AnimatedBackground from "@/components/AnimatedBackground";
-
-export const metadata: Metadata = {
-  title: "About Us",
-  description: "ACE Sports Tech — India's premier sports infrastructure company with 10+ years and 150+ projects.",
-};
+import { motion } from "framer-motion";
 
 const iconMap: Record<string, React.ElementType> = { Award, CheckCircle, BarChart3, Cpu, Shield, MapPin };
 
@@ -47,21 +44,25 @@ export default function AboutPage() {
                 { label: "Our Vision", text: "To be India's most trusted sports infrastructure partner — known for uncompromising quality, innovation, and the ability to deliver any sporting facility, anywhere.", color: "#007AFF" },
                 { label: "Brand Positioning", text: "Engineering high-performance sports environments and transforming ordinary spaces into world-class sporting destinations.", color: "#007AFF" },
               ].map(item => (
-                <div key={item.label} className="glass-light p-6" style={{ borderLeft: `3px solid ${item.color}`, borderLeftColor: item.color }}>
+                <motion.div 
+                  key={item.label} 
+                  whileHover={{ scale: 1.02, borderColor: item.color, boxShadow: `0 10px 30px -10px ${item.color}35` }}
+                  className="glass-light p-6 transition-all duration-300 border border-slate-200" 
+                  style={{ borderLeft: `4px solid ${item.color}` }}
+                >
                   <h3 className="text-xl font-display font-black uppercase mb-3 tracking-wide" style={{ color: item.color }}>{item.label}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{item.text}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
       <section className="relative py-16 overflow-hidden" style={{ background: "#09090b" }}>
         <AnimatedBackground />
         <div className="neon-line absolute top-0 left-0 right-0" />
-        <div className="max-w-7xl mx-auto px-5 lg:px-10">
+        <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: "rgba(0, 122, 255,0.05)" }}>
             {[
               { value: "150+", label: "Projects", color: "#007AFF" },
@@ -84,21 +85,24 @@ export default function AboutPage() {
         <AnimatedBackgroundLight />
         <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
           <SectionHeading eyebrow="Brand Attributes" title="What Defines Us" subtitle="Five core principles guide everything we design, build, and deliver." align="center" theme="light" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
               { word: "Innovative", desc: "Pioneering new materials and construction methods in Indian sports infrastructure.", color: "#007AFF" },
               { word: "Reliable", desc: "Consistent delivery quality, on schedule, across every project we undertake.", color: "#007AFF" },
               { word: "Performance Driven", desc: "Every surface, system and structure is engineered for peak athletic performance.", color: "#007AFF" },
               { word: "Future Ready", desc: "Integrating smart technology and sustainable design into every facility we build.", color: "#BF5AF2" },
+              { word: "Sustainable", desc: "Eco-friendly sports surfaces utilizing recycled rubber and energy-efficient systems.", color: "#34C759" },
               { word: "Infrastructure Focused", desc: "Deep specialization in sports construction — it is the only thing we do.", color: "#FF3B5C" },
             ].map((attr, i) => (
-              <div key={attr.word} className="glass-light p-6 text-center group hover:scale-[1.02] transition-all duration-300 hover:[border-color:var(--hover-color)]"
-                style={{ "--hover-color": `${attr.color}40` } as React.CSSProperties}
+              <motion.div 
+                key={attr.word} 
+                whileHover={{ scale: 1.02, borderColor: attr.color, boxShadow: `0 10px 30px -10px ${attr.color}35` }}
+                className="glass-light p-6 text-center transition-all duration-300 border border-slate-200"
               >
                 <div className="w-2 h-2 rounded-full mx-auto mb-4" style={{ background: attr.color, boxShadow: `0 0 8px ${attr.color}` }} />
                 <p className="font-display font-bold text-slate-900 text-lg uppercase mb-2">{attr.word}</p>
                 <p className="text-slate-600 text-xs leading-relaxed">{attr.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -115,15 +119,17 @@ export default function AboutPage() {
               const colors = ["#007AFF", "#007AFF", "#007AFF", "#BF5AF2", "#FF3B5C", "#007AFF"];
               const c = colors[i];
               return (
-                <div key={item.title} className="glass p-6 group transition-all duration-300 hover:scale-[1.01] hover:[border-color:var(--hover-color)]"
-                  style={{ "--hover-color": `${c}40` } as React.CSSProperties}
+                <motion.div 
+                  key={item.title} 
+                  whileHover={{ scale: 1.02, borderColor: `${c}60`, boxShadow: `0 10px 30px -10px ${c}25` }}
+                  className="glass p-6 transition-all duration-300 border border-white/10"
                 >
                   <div className="w-10 h-10 flex items-center justify-center mb-4" style={{ background: `${c}15`, border: `1px solid ${c}30` }}>
                     <Icon size={17} style={{ color: c }} />
                   </div>
                   <h3 className="font-display font-bold text-white text-sm uppercase tracking-wide mb-2">{item.title}</h3>
                   <p className="text-white/45 text-xs leading-relaxed">{item.description}</p>
-                </div>
+                </motion.div>
               );
             })}
           </div>

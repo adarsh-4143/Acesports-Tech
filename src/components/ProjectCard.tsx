@@ -26,8 +26,12 @@ export default function ProjectCard({ id, title, location, category, year, descr
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -6 }}
-      className="group relative overflow-hidden bg-slate-900"
+      whileHover={{ 
+        scale: 1.02, 
+        borderColor: `${cfg.color}80`, 
+        boxShadow: `0 15px 35px -10px ${cfg.color}40` 
+      }}
+      className="group relative overflow-hidden bg-slate-900 transition-all duration-300"
       style={{
         border: "1px solid rgba(255,255,255,0.1)",
       }}
@@ -42,9 +46,9 @@ export default function ProjectCard({ id, title, location, category, year, descr
       <div className="h-0.5 w-full" style={{ background: `linear-gradient(90deg, ${cfg.color}, transparent)`, boxShadow: `0 0 8px ${cfg.color}40` }} />
 
       {/* Visual area */}
-      <div className="relative h-40 overflow-hidden">
+      <div className="relative h-64 overflow-hidden">
         {image && (
-          <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
         )}
         <div
           className="absolute inset-0"
@@ -83,28 +87,28 @@ export default function ProjectCard({ id, title, location, category, year, descr
       </div>
 
       {/* Content */}
-      <div className="relative z-10 p-6">
-        <h3 className="font-display font-bold text-white text-xl uppercase tracking-wide mb-1 group-hover:text-white transition-colors leading-tight">
+      <div className="relative z-10 p-5">
+        <h3 className="font-display font-bold text-white text-lg uppercase tracking-wide mb-1 transition-colors leading-tight group-hover:text-[#007AFF]">
           {title}
         </h3>
-        <div className="flex items-center gap-1.5 mb-3">
+        <div className="flex items-center gap-1.5 mb-2.5">
           <MapPin size={11} style={{ color: cfg.color }} />
           <span className="text-white/40 text-xs">{location}</span>
         </div>
-        <p className="text-white/45 text-sm leading-relaxed mb-5">{description}</p>
+        <p className="text-white/45 text-xs leading-relaxed mb-4 line-clamp-2">{description}</p>
 
         {(area || duration) && (
-          <div className="flex gap-6 pt-4 border-t border-white/5">
+          <div className="flex gap-6 pt-3 border-t border-white/5">
             {area && (
               <div>
-                <p className="text-white/25 text-xs tracking-widest uppercase mb-1">Area</p>
-                <p className="text-white text-sm font-semibold font-mono">{area}</p>
+                <p className="text-white/25 text-[10px] tracking-widest uppercase mb-0.5">Area</p>
+                <p className="text-white text-xs font-semibold font-mono">{area}</p>
               </div>
             )}
             {duration && (
               <div>
-                <p className="text-white/25 text-xs tracking-widest uppercase mb-1">Duration</p>
-                <p className="text-white text-sm font-semibold font-mono">{duration}</p>
+                <p className="text-white/25 text-[10px] tracking-widest uppercase mb-0.5">Duration</p>
+                <p className="text-white text-xs font-semibold font-mono">{duration}</p>
               </div>
             )}
           </div>

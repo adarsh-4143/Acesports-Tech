@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import EnquiryPopup from "@/components/EnquiryPopup";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Providers from "@/components/Providers";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: {
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <MobileBottomNav />
           <EnquiryPopup />
+          <WhatsAppButton />
         </Providers>
       </body>
     </html>

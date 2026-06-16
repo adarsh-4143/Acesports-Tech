@@ -18,6 +18,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: "error" | "success" } | null>(null);
+  const [errors, setErrors] = useState<Record<string, boolean>>({});
 
   const showToast = (message: string, type: "error" | "success" = "error") => {
     setToast({ message, type });
@@ -36,18 +37,27 @@ export default function SignupPage() {
     const value = e.target.value;
     if (value.trim() === "" && value.length > 0) return;
     setName(capitalizeWords(value));
+    if (errors.name) {
+      setErrors(prev => ({ ...prev, name: false }));
+    }
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value.trim() === "" && value.length > 0) return;
     setEmail(value);
+    if (errors.email) {
+      setErrors(prev => ({ ...prev, email: false }));
+    }
   };
 
   const handleMobileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/[^0-9]/g, "");
     if (value.length <= 10) {
       setMobile(value);
+      if (errors.mobile) {
+        setErrors(prev => ({ ...prev, mobile: false }));
+      }
     }
   };
 
@@ -55,23 +65,45 @@ export default function SignupPage() {
     const value = e.target.value;
     if (value.trim() === "" && value.length > 0) return;
     setPassword(value);
+    if (errors.password) {
+      setErrors(prev => ({ ...prev, password: false }));
+    }
   };
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!name || !email || !mobile || !password) {
-      showToast("Please fill in all required fields.");
-      return;
+    const newErrors: Record<string, boolean> = {};
+
+    if (!name) {
+      newErrors.name = true;
+      showToast("Full Name is required.", "error");
     }
 
-    if (!validateEmail(email)) {
-      showToast("Please Enter Valid Email Address.");
-      return;
+    if (!email) {
+      newErrors.email = true;
+      showToast("Email Address is required.", "error");
+    } else if (!validateEmail(email)) {
+      newErrors.email = true;
+      showToast("Please Enter Valid Email Address.", "error");
     }
 
-    if (mobile.length !== 10) {
-      showToast("Please Enter Valid 10-digit Mobile Number.");
+    if (!mobile) {
+      newErrors.mobile = true;
+      showToast("Mobile Number is required.", "error");
+    } else if (mobile.length !== 10) {
+      newErrors.mobile = true;
+      showToast("Please Enter Valid 10-digit Mobile Number.", "error");
+    }
+
+    if (!password) {
+      newErrors.password = true;
+      showToast("Password is required.", "error");
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
       return;
     }
 
@@ -131,46 +163,70 @@ export default function SignupPage() {
 
           <form onSubmit={handleSignup} className="space-y-5">
             <div>
-              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Full Name *</label>
+              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">
+                Full Name <span className="text-red-500 font-bold">*</span>
+              </label>
               <input 
                 type="text" 
                 required
                 value={name}
                 onChange={handleNameChange}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black"
+                className={`w-full px-4 py-3 bg-slate-50 border outline-none transition-all text-sm text-black ${
+                  errors.name 
+                    ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                    : "border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF]"
+                }`}
                 placeholder="John Doe"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Email Address *</label>
+              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">
+                Email Address <span className="text-red-500 font-bold">*</span>
+              </label>
               <input 
                 type="email" 
                 required
                 value={email}
                 onChange={handleEmailChange}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black"
+                className={`w-full px-4 py-3 bg-slate-50 border outline-none transition-all text-sm text-black ${
+                  errors.email 
+                    ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                    : "border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF]"
+                }`}
                 placeholder="you@example.com"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Mobile Number *</label>
+              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">
+                Mobile Number <span className="text-red-500 font-bold">*</span>
+              </label>
               <input 
                 type="tel" 
                 required
                 value={mobile}
                 onChange={handleMobileChange}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black"
+                className={`w-full px-4 py-3 bg-slate-50 border outline-none transition-all text-sm text-black ${
+                  errors.mobile 
+                    ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                    : "border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF]"
+                }`}
                 placeholder="9876543210"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Password *</label>
+              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">
+                Password <span className="text-red-500 font-bold">*</span>
+              </label>
               <input 
                 type="password" 
                 required
                 value={password}
                 onChange={handlePasswordChange}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black"
+                className={`w-full px-4 py-3 bg-slate-50 border outline-none transition-all text-sm text-black ${
+                  errors.password 
+                    ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                    : "border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF]"
+                }`}
                 placeholder="••••••••"
               />
             </div>

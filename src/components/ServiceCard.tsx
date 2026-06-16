@@ -50,8 +50,9 @@ export default function ServiceCard({ id, title, description, icon, index = 0, v
       transition={{ duration: 0.6, delay: index * 0.08 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      whileHover={{ scale: 1.02 }}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d", perspective: 1000 }}
-      className="group relative cursor-pointer"
+      className="group relative cursor-pointer animate-hover-shadow"
     >
       {/* Glow on hover */}
       <motion.div
@@ -60,11 +61,12 @@ export default function ServiceCard({ id, title, description, icon, index = 0, v
       />
 
       <div
-        className="relative h-full border overflow-hidden transition-all duration-500 group-hover:border-opacity-60 bg-slate-900"
+        className="relative h-full border overflow-hidden transition-all duration-500 bg-slate-900 group-hover:shadow-[0_15px_35px_-10px_var(--service-glow-color)] group-hover:border-opacity-100"
         style={{
           borderColor: "rgba(255,255,255,0.1)",
           boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)",
-        }}
+          "--service-glow-color": accent.glow,
+        } as React.CSSProperties}
       >
         {/* Background Image Layer */}
         {image && (
