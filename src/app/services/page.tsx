@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: "ACE Sports Tech — stadium development, synthetic tracks, artificial turf, sports courts, academies and technology solutions.",
 };
 
-const accentColors = ["#39FF14","#39FF14","#39FF14","#BF5AF2","#FF3B5C","#39FF14","#39FF14"];
+const accentColors = ["#007AFF","#007AFF","#007AFF","#BF5AF2","#FF3B5C","#007AFF","#007AFF"];
 
 export default async function ServicesPage() {
   const [servicesRes, featuresRes, mediaRes, featureMediaRes] = await Promise.all([
@@ -89,7 +89,7 @@ export default async function ServicesPage() {
             key={service.id}
             id={service.id}
             className="relative section-pad overflow-hidden"
-            style={{ background: isEven ? "#ffffff" : "linear-gradient(135deg, #0B1F3A 0%, #060f1e 100%)" }}
+            style={{ background: isEven ? "#ffffff" : "linear-gradient(135deg, #0B1F3A 0%, #09090b 100%)" }}
           >
             {isEven ? <AnimatedBackgroundLight /> : <AnimatedBackground />}
             <div className={`absolute inset-0 ${isEven ? 'grid-pattern-light opacity-50' : 'grid-pattern opacity-15'} pointer-events-none`} />
@@ -104,7 +104,7 @@ export default async function ServicesPage() {
             <div className="absolute top-0 left-0 right-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${color}40, transparent)` }} />
 
             <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${!isEven ? "lg:flex-row-reverse" : ""}`}>
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-14 items-center ${!isEven ? "lg:flex-row-reverse" : ""}`}>
                 <div className={!isEven ? "lg:order-2" : ""}>
                   <div className="flex items-center gap-3 mb-5">
                     <div className="w-8 h-px" style={{ background: color, boxShadow: `0 0 8px ${color}` }} />
@@ -117,7 +117,7 @@ export default async function ServicesPage() {
                   </h2>
                   <div className="h-0.5 w-16 mb-5" style={{ background: `linear-gradient(90deg, ${color}, transparent)`, boxShadow: `0 0 8px ${color}60` }} />
                   <p className={`${isEven ? 'text-slate-600' : 'text-white/60'} leading-relaxed mb-3`}>{service.description}</p>
-                  <p className={`${isEven ? 'text-slate-500' : 'text-white/40'} text-sm leading-relaxed mb-8`}>{service.longDescription}</p>
+                  <p className={`${isEven ? 'text-slate-500' : 'text-white/40'} text-sm leading-relaxed mb-12`}>{service.longDescription}</p>
                   <Link href={`/services/${service.id}`} className="btn-electric">
                     <Zap size={13} />
                     View Details
@@ -127,7 +127,7 @@ export default async function ServicesPage() {
                 <div className={!isEven ? "lg:order-1" : ""}>
                   <div className={`overflow-hidden ${isEven ? "bg-slate-50 border" : "glass-electric"}`} style={{ borderColor: `${color}25` }}>
                     <div className="h-48 relative overflow-hidden group">
-                      <div className="absolute inset-0 bg-[#060f1e]/20 z-10" />
+                      <div className="absolute inset-0 bg-[#09090b]/20 z-10" />
                       <img src={service.image} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     </div>
                     <div className="p-7">

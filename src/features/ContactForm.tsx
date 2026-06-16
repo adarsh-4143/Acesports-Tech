@@ -109,12 +109,12 @@ export default function ContactForm() {
 
   const isFloating = (name: string) => focused === name || ((form as any)[name] && (form as any)[name].length > 0);
   
-  const floatingLabelClass = (name: string) => `absolute left-3 px-1 transition-all duration-200 pointer-events-none bg-slate-900 font-display font-semibold tracking-wider uppercase ${
-    isFloating(name) ? "-top-2 text-[10px] text-[#39FF14]" : "top-3.5 text-xs text-white/35"
+  const floatingLabelClass = (name: string) => `absolute left-3 px-1 transition-all duration-200 pointer-events-none bg-slate-900 font-body font-medium tracking-wide ${
+    isFloating(name) ? "-top-2 text-[9px] text-white" : "top-3.5 text-[11px] text-white"
   }`;
 
-  const inputBaseClass = (name: string) => `w-full bg-transparent px-4 py-3 text-sm text-white rounded outline-none transition-all duration-300 border ${
-    focused === name ? "border-[#39FF14] shadow-[0_0_15px_rgba(57,255,20,0.15)]" : "border-white/20"
+  const inputBaseClass = (name: string) => `w-full bg-white/5 px-4 py-3 text-xs font-body text-white rounded outline-none transition-all duration-300 placeholder-white ${
+    focused === name ? "bg-white/10 ring-0" : ""
   }`;
 
   const filteredServices = serviceOptions.filter(s => s.toLowerCase().includes(serviceSearch.toLowerCase()));
@@ -124,25 +124,25 @@ export default function ContactForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="glass-electric p-12 text-center min-h-[420px] flex flex-col items-center justify-center rounded-lg"
+        className="glass-electric p-8 text-center min-h-[420px] flex flex-col items-center justify-center rounded-lg"
       >
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
           className="w-16 h-16 flex items-center justify-center mb-6"
-          style={{ background: "linear-gradient(135deg, rgba(57,255,20,0.2), rgba(57,255,20,0.1))", border: "1px solid rgba(57,255,20,0.4)", boxShadow: "0 0 30px rgba(57,255,20,0.2)" }}
+          style={{ background: "linear-gradient(135deg, rgba(0, 122, 255,0.2), rgba(0, 122, 255,0.1))", border: "1px solid rgba(0, 122, 255,0.4)", boxShadow: "0 0 30px rgba(0, 122, 255,0.2)" }}
         >
-          <CheckCircle size={28} className="text-[#39FF14]" />
+          <CheckCircle size={28} className="text-[#007AFF]" />
         </motion.div>
         <h3 className="font-display font-bold text-white text-2xl uppercase mb-3">Enquiry Received</h3>
         <p className="text-white/50 text-sm max-w-sm leading-relaxed">
           Thank you for reaching out. A member of our team will be in touch within 24 hours to discuss your project.
         </p>
         <div className="flex items-center gap-3 mt-6">
-          <div className="w-8 h-px" style={{ background: "#39FF14", boxShadow: "0 0 6px #39FF14" }} />
-          <span className="text-[#39FF14] text-xs tracking-[0.3em] uppercase font-display font-semibold">ACE Sports Tech</span>
-          <div className="w-8 h-px" style={{ background: "#39FF14", boxShadow: "0 0 6px #39FF14" }} />
+          <div className="w-8 h-px" style={{ background: "#007AFF", boxShadow: "0 0 6px #007AFF" }} />
+          <span className="text-[#007AFF] text-xs tracking-[0.3em] uppercase font-display font-semibold">ACE Sports Tech</span>
+          <div className="w-8 h-px" style={{ background: "#007AFF", boxShadow: "0 0 6px #007AFF" }} />
         </div>
       </motion.div>
     );
@@ -158,7 +158,7 @@ export default function ContactForm() {
             animate={{ opacity: 1, y: 0, x: "-50%" }}
             exit={{ opacity: 0, y: -20, x: "-50%" }}
             className={`absolute top-4 left-1/2 z-50 flex items-center gap-2 px-4 py-2.5 rounded shadow-xl border ${
-              toast.type === "error" ? "bg-red-500/10 border-red-500/50 text-red-500" : "bg-[#39FF14]/10 border-[#39FF14]/50 text-[#39FF14]"
+              toast.type === "error" ? "bg-red-500/10 border-red-500/50 text-red-500" : "bg-[#007AFF]/10 border-[#007AFF]/50 text-[#007AFF]"
             }`}
           >
             {toast.type === "error" ? <AlertCircle size={16} /> : <CheckCircle size={16} />}
@@ -168,13 +168,13 @@ export default function ContactForm() {
         )}
       </AnimatePresence>
 
-      <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ background: "radial-gradient(circle at top right, #39FF14, transparent)" }} />
+      <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ background: "radial-gradient(circle at top right, #007AFF, transparent)" }} />
       
       <div className="relative z-10">
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-6 h-px" style={{ background: "#39FF14", boxShadow: "0 0 6px #39FF14" }} />
-            <span className="text-[#39FF14] text-xs font-display font-semibold tracking-[0.3em] uppercase">Project Enquiry Form</span>
+            <div className="w-6 h-px" style={{ background: "#007AFF", boxShadow: "0 0 6px #007AFF" }} />
+            <span className="text-[#007AFF] text-xs font-display font-semibold tracking-[0.3em] uppercase">Project Enquiry Form</span>
           </div>
           <h3 className="font-display font-bold text-white text-2xl uppercase">Tell Us About Your Project</h3>
         </div>
@@ -235,7 +235,7 @@ export default function ContactForm() {
                       placeholder="Search services..." 
                       value={serviceSearch}
                       onChange={(e) => setServiceSearch(e.target.value)}
-                      className="w-full bg-slate-900 text-white text-xs px-9 py-2 rounded outline-none border border-slate-700 focus:border-[#39FF14]"
+                      className="w-full bg-slate-800 text-white text-[11px] font-body placeholder:text-[10px] placeholder:font-body px-9 py-2 rounded outline-none"
                     />
                   </div>
                   <ul className="max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-600">
@@ -252,7 +252,7 @@ export default function ContactForm() {
                             setFocused(null);
                           }}
                           className={`px-4 py-2.5 text-xs cursor-pointer transition-colors ${
-                            form.service === opt ? "bg-[#39FF14]/20 text-[#39FF14] font-bold" : "text-white/80 hover:bg-slate-700"
+                            form.service === opt ? "bg-[#007AFF]/20 text-[#007AFF] font-bold" : "text-white/80 hover:bg-slate-700"
                           }`}
                         >
                           {opt}
@@ -286,7 +286,7 @@ export default function ContactForm() {
             >
               {loading ? (
                 <>
-                  <span className="w-4 h-4 border-2 border-[#060f1e]/30 border-t-[#060f1e] rounded-full animate-spin" />
+                  <span className="w-4 h-4 border-2 border-[#09090b]/30 border-t-[#09090b] rounded-full animate-spin" />
                   Processing...
                 </>
               ) : (

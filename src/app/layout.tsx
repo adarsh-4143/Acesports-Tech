@@ -3,6 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EnquiryPopup from "@/components/EnquiryPopup";
+import MobileBottomNav from "@/components/MobileBottomNav";
+import Providers from "@/components/Providers";
 
 export const metadata: Metadata = {
   title: {
@@ -19,8 +21,6 @@ export const metadata: Metadata = {
   },
 };
 
-import Providers from "@/components/Providers";
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -28,11 +28,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body style={{ background: "#060f1e" }}>
+      <body style={{ background: "#09090b" }}>
         <Providers>
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <MobileBottomNav />
           <EnquiryPopup />
         </Providers>
       </body>

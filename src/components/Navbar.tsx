@@ -63,7 +63,7 @@ export default function Navbar() {
               <img src="/logo.svg" alt="ACE Sports Tech" className="h-[65px] lg:h-[75px] w-auto object-contain relative z-10 transition-all duration-500 drop-shadow-sm" />
               {/* Glow ring */}
               <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: "radial-gradient(circle, rgba(57,255,20,0.2) 0%, transparent 60%)" }}
+                style={{ background: "radial-gradient(circle, rgba(0, 122, 255,0.2) 0%, transparent 60%)" }}
               />
             </motion.div>
           </Link>
@@ -75,12 +75,12 @@ export default function Navbar() {
               return link.dropdown ? (
                 <div key={link.label} className="relative group">
                   <div className={`flex items-center gap-1 cursor-pointer relative px-5 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-300 rounded-full overflow-hidden ${
-                    active ? "text-[#060f1e]" : "text-slate-500 hover:text-slate-900"
+                    active ? "text-[#09090b]" : "text-slate-500 hover:text-slate-900"
                   }`}>
                     {active && (
                       <motion.div
                         layoutId="nav-pill"
-                        className="absolute inset-0 bg-[#39FF14]/20 border border-[#39FF14]/30 rounded-full"
+                        className="absolute inset-0 bg-[#007AFF]/20 border border-[#007AFF]/30 rounded-full"
                       />
                     )}
                     {!active && (
@@ -106,14 +106,14 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href!}
                   className={`relative px-5 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-300 rounded-full overflow-hidden group ${
-                    active ? "text-[#060f1e]" : "text-slate-500 hover:text-slate-900"
+                    active ? "text-[#09090b]" : "text-slate-500 hover:text-slate-900"
                   }`}
                 >
                   {/* Active background */}
                   {active && (
                     <motion.div
                       layoutId="nav-pill"
-                      className="absolute inset-0 bg-[#39FF14]/20 border border-[#39FF14]/30 rounded-full"
+                      className="absolute inset-0 bg-[#007AFF]/20 border border-[#007AFF]/30 rounded-full"
                     />
                   )}
                   {/* Hover background */}
@@ -132,7 +132,7 @@ export default function Navbar() {
               <Link href="/cart" className="relative text-slate-600 hover:text-slate-900 transition-colors">
                 <ShoppingCart size={18} />
                 {cartItemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-[#39FF14] text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 bg-[#007AFF] text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                     {cartItemCount}
                   </span>
                 )}
@@ -168,7 +168,7 @@ export default function Navbar() {
             <Link href="/cart" className="relative text-slate-600">
               <ShoppingCart size={20} />
               {cartItemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#39FF14] text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-[#007AFF] text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                   {cartItemCount}
                 </span>
               )}
@@ -217,10 +217,10 @@ export default function Navbar() {
                             href={subItem.href}
                             className="flex items-center justify-between group"
                           >
-                            <span className="font-condensed text-2xl font-bold text-white/70 group-hover:text-[#39FF14] transition-colors tracking-wide">
+                            <span className="font-condensed text-2xl font-bold text-white/70 group-hover:text-[#007AFF] transition-colors tracking-wide">
                               {subItem.label}
                             </span>
-                            <ChevronRight size={16} className="text-white/30 group-hover:text-[#39FF14] transition-colors" />
+                            <ChevronRight size={16} className="text-white/30 group-hover:text-[#007AFF] transition-colors" />
                           </Link>
                         ))}
                       </div>
@@ -230,10 +230,10 @@ export default function Navbar() {
                       href={link.href!}
                       className="flex items-center justify-between py-4 border-b border-white/5 group"
                     >
-                      <span className="font-condensed text-4xl font-bold text-white group-hover:text-[#39FF14] transition-colors tracking-wide">
+                      <span className="font-condensed text-4xl font-bold text-white group-hover:text-[#007AFF] transition-colors tracking-wide">
                         {link.label}
                       </span>
-                      <ChevronRight size={20} className="text-white/30 group-hover:text-[#39FF14] transition-colors" />
+                      <ChevronRight size={20} className="text-white/30 group-hover:text-[#007AFF] transition-colors" />
                     </Link>
                   )}
                 </motion.div>

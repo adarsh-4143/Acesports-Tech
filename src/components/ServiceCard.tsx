@@ -11,13 +11,13 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 const accentColors: Record<number, { from: string; to: string; glow: string }> = {
-  0: { from: "#39FF14", to: "#00CC44", glow: "rgba(57,255,20,0.3)" },
-  1: { from: "#39FF14", to: "#00CC44", glow: "rgba(57,255,20,0.25)" },
-  2: { from: "#39FF14", to: "#00CC44", glow: "rgba(57,255,20,0.25)" },
+  0: { from: "#007AFF", to: "#004eaa", glow: "rgba(0, 122, 255,0.3)" },
+  1: { from: "#007AFF", to: "#004eaa", glow: "rgba(0, 122, 255,0.25)" },
+  2: { from: "#007AFF", to: "#004eaa", glow: "rgba(0, 122, 255,0.25)" },
   3: { from: "#BF5AF2", to: "#8833EE", glow: "rgba(191,90,242,0.25)" },
-  4: { from: "#39FF14", to: "#39FF14", glow: "rgba(57,255,20,0.25)" },
+  4: { from: "#007AFF", to: "#007AFF", glow: "rgba(0, 122, 255,0.25)" },
   5: { from: "#FF3B5C", to: "#CC0033", glow: "rgba(255,59,92,0.25)" },
-  6: { from: "#39FF14", to: "#39FF14", glow: "rgba(57,255,20,0.25)" },
+  6: { from: "#007AFF", to: "#007AFF", glow: "rgba(0, 122, 255,0.25)" },
 };
 
 interface ServiceCardProps {

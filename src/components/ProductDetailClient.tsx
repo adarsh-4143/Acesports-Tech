@@ -15,8 +15,8 @@ export default function ProductDetailClient({ product }: { product: any }) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center">
         <h1 className="text-4xl font-display font-bold text-slate-900 mb-4 uppercase">Product Not Found</h1>
-        <p className="text-slate-500 mb-8">The product you are looking for does not exist or has been removed.</p>
-        <Link href="/products" className="px-6 py-3 bg-slate-900 text-[#39FF14] font-bold uppercase tracking-widest text-sm hover:bg-[#39FF14] hover:text-black transition-colors">
+        <p className="text-slate-500 mb-12">The product you are looking for does not exist or has been removed.</p>
+        <Link href="/products" className="px-6 py-3 bg-slate-900 text-[#007AFF] font-bold uppercase tracking-widest text-sm hover:bg-[#007AFF] hover:text-black transition-colors">
           Back to Catalog
         </Link>
       </div>
@@ -55,7 +55,7 @@ export default function ProductDetailClient({ product }: { product: any }) {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+    <div className="flex flex-col lg:flex-row gap-8 lg:gap-14">
       
       {/* Left Column: Image Gallery */}
       <div className="w-full lg:w-1/2 flex flex-col gap-4">
@@ -74,10 +74,10 @@ export default function ProductDetailClient({ product }: { product: any }) {
           {/* Navigation Arrows */}
           {product.images && product.images.length > 1 && (
             <>
-              <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur border border-slate-200 flex items-center justify-center text-slate-800 hover:bg-[#39FF14] hover:border-[#39FF14] transition-colors opacity-0 group-hover:opacity-100">
+              <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur border border-slate-200 flex items-center justify-center text-slate-800 hover:bg-[#007AFF] hover:border-[#007AFF] transition-colors opacity-0 group-hover:opacity-100">
                 <ChevronLeft size={20} />
               </button>
-              <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur border border-slate-200 flex items-center justify-center text-slate-800 hover:bg-[#39FF14] hover:border-[#39FF14] transition-colors opacity-0 group-hover:opacity-100">
+              <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur border border-slate-200 flex items-center justify-center text-slate-800 hover:bg-[#007AFF] hover:border-[#007AFF] transition-colors opacity-0 group-hover:opacity-100">
                 <ChevronRight size={20} />
               </button>
             </>
@@ -91,7 +91,7 @@ export default function ProductDetailClient({ product }: { product: any }) {
               <button 
                 key={idx}
                 onClick={() => setActiveImageIndex(idx)}
-                className={`relative w-20 h-20 flex-shrink-0 border-2 transition-all ${activeImageIndex === idx ? 'border-[#39FF14] opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}`}
+                className={`relative w-20 h-20 flex-shrink-0 border-2 transition-all ${activeImageIndex === idx ? 'border-[#007AFF] opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}`}
               >
                 <img src={img} alt={`Thumbnail ${idx}`} className="w-full h-full object-cover" />
               </button>
@@ -103,7 +103,7 @@ export default function ProductDetailClient({ product }: { product: any }) {
       {/* Right Column: Product Info */}
       <div className="w-full lg:w-1/2 flex flex-col">
         <div className="mb-2 flex items-center gap-3">
-          <span className="px-3 py-1 bg-slate-900 text-[#39FF14] text-[10px] font-bold uppercase tracking-widest">
+          <span className="px-3 py-1 bg-slate-900 text-[#007AFF] text-[10px] font-bold uppercase tracking-widest">
             {product.categoryName || "Uncategorized"}
           </span>
           <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest">
@@ -118,8 +118,8 @@ export default function ProductDetailClient({ product }: { product: any }) {
           Model: {product.modelName || "Standard"}
         </p>
 
-        <div className="mb-8 p-6 bg-white border border-slate-200 shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-[#39FF14]/10 rounded-bl-full -z-0" />
+        <div className="mb-12 p-6 bg-white border border-slate-200 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-[#007AFF]/10 rounded-bl-full -z-0" />
           <div className="relative z-10 flex flex-col gap-1">
             {mrp > salePrice && (
               <div className="flex items-center gap-3">
@@ -136,21 +136,21 @@ export default function ProductDetailClient({ product }: { product: any }) {
           </div>
         </div>
 
-        <p className="text-slate-600 leading-relaxed mb-8 text-sm md:text-base">
+        <p className="text-slate-600 leading-relaxed mb-12 text-sm md:text-base">
           {product.description || product.shortDescription || "No description available for this product."}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row gap-4 mb-12">
           <button 
             onClick={handleAddToCart}
-            className="flex-1 py-4 bg-slate-900 text-[#39FF14] flex items-center justify-center gap-3 font-display font-bold uppercase tracking-widest hover:bg-[#39FF14] hover:text-black transition-all duration-300 group"
+            className="flex-1 py-4 bg-slate-900 text-[#007AFF] flex items-center justify-center gap-3 font-display font-bold uppercase tracking-widest hover:bg-[#007AFF] hover:text-black transition-all duration-300 group"
           >
             <ShoppingCart size={18} className="group-hover:scale-110 transition-transform" />
             Add to Cart
           </button>
           <button 
             onClick={handleBuyNow}
-            className="flex-1 py-4 bg-[#39FF14] text-black flex items-center justify-center gap-3 font-display font-bold uppercase tracking-widest hover:bg-white transition-all duration-300 shadow-[0_0_15px_rgba(57,255,20,0.5)] group"
+            className="flex-1 py-4 bg-[#007AFF] text-black flex items-center justify-center gap-3 font-display font-bold uppercase tracking-widest hover:bg-white transition-all duration-300 shadow-[0_0_15px_rgba(0, 122, 255,0.5)] group"
           >
             <Zap size={18} className="group-hover:scale-110 transition-transform" />
             Buy Now
@@ -160,15 +160,15 @@ export default function ProductDetailClient({ product }: { product: any }) {
         {/* Value Propositions */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
           <div className="flex flex-col items-center justify-center text-center p-4 bg-slate-50 border border-slate-100">
-            <Shield size={24} className="text-[#39FF14] mb-2" />
+            <Shield size={24} className="text-[#007AFF] mb-2" />
             <span className="text-[10px] font-bold text-slate-900 uppercase tracking-widest">Global Certs</span>
           </div>
           <div className="flex flex-col items-center justify-center text-center p-4 bg-slate-50 border border-slate-100">
-            <Truck size={24} className="text-[#39FF14] mb-2" />
+            <Truck size={24} className="text-[#007AFF] mb-2" />
             <span className="text-[10px] font-bold text-slate-900 uppercase tracking-widest">Fast Delivery</span>
           </div>
           <div className="flex flex-col items-center justify-center text-center p-4 bg-slate-50 border border-slate-100">
-            <Zap size={24} className="text-[#39FF14] mb-2" />
+            <Zap size={24} className="text-[#007AFF] mb-2" />
             <span className="text-[10px] font-bold text-slate-900 uppercase tracking-widest">Expert Setup</span>
           </div>
         </div>

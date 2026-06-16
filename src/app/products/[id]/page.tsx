@@ -62,14 +62,14 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-slate-50 relative">
+    <div className="min-min-h-[80vh] pt-24 pb-20 bg-slate-50 relative">
       <AnimatedBackgroundLight />
       <div className="absolute inset-0 grid-pattern-light opacity-50 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-5 lg:px-10 relative z-10">
         
         {/* Breadcrumb */}
-        <div className="mb-8">
+        <div className="mb-12">
           <Link href="/products" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 uppercase tracking-wider hover:text-slate-900 transition-colors">
             <ArrowLeft size={16} /> Back to Catalog
           </Link>

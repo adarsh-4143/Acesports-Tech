@@ -72,7 +72,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen pt-20 pb-12 flex items-center justify-center relative bg-slate-50">
+    <div className="min-min-h-[80vh] pt-20 pb-12 flex items-center justify-center relative bg-slate-50">
       <AnimatedBackgroundLight />
       <div className="absolute inset-0 grid-pattern-light opacity-50 pointer-events-none" />
       
@@ -84,7 +84,7 @@ export default function LoginPage() {
             animate={{ opacity: 1, y: 0, x: "-50%" }}
             exit={{ opacity: 0, y: -20, x: "-50%" }}
             className={`absolute top-4 left-1/2 z-[100] flex items-center gap-2 px-4 py-2.5 rounded shadow-xl border ${
-              toast.type === "error" ? "bg-red-500/10 border-red-500/50 text-red-500 bg-white" : "bg-[#39FF14]/10 border-[#39FF14]/50 text-[#00CC44] bg-white"
+              toast.type === "error" ? "bg-red-500/10 border-red-500/50 text-red-500 bg-white" : "bg-[#007AFF]/10 border-[#007AFF]/50 text-[#004eaa] bg-white"
             }`}
           >
             {toast.type === "error" ? <AlertCircle size={16} /> : <CheckCircle2 size={16} />}
@@ -96,11 +96,11 @@ export default function LoginPage() {
       
       <div className="relative z-10 w-full max-w-md px-5">
         <div className="bg-white border border-slate-200 p-8 shadow-xl">
-          <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_15px_rgba(57,255,20,0.5)]">
-            <User size={20} className="text-[#39FF14]" />
+          <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_15px_rgba(0, 122, 255,0.5)]">
+            <User size={20} className="text-[#007AFF]" />
           </div>
           <h1 className="text-2xl font-display font-bold text-slate-900 text-center uppercase tracking-wide mb-2">Welcome Back</h1>
-          <p className="text-center text-slate-500 text-sm mb-8">Enter your credentials to access your account</p>
+          <p className="text-center text-slate-500 text-sm mb-12">Enter your credentials to access your account</p>
 
           <form onSubmit={handleLogin} className="space-y-5">
             <div>
@@ -110,7 +110,7 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={handleEmailChange}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black"
                 placeholder="you@example.com"
               />
             </div>
@@ -124,7 +124,7 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={handlePasswordChange}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black"
                 placeholder="••••••••"
               />
             </div>
@@ -132,11 +132,11 @@ export default function LoginPage() {
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full py-3 bg-slate-900 text-[#39FF14] font-display font-bold text-sm uppercase tracking-widest hover:bg-[#39FF14] hover:text-black transition-colors flex items-center justify-center gap-2 mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-slate-900 text-[#007AFF] font-display font-bold text-sm uppercase tracking-widest hover:bg-[#007AFF] hover:text-black transition-colors flex items-center justify-center gap-2 mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <>
-                  <span className="w-4 h-4 border-2 border-[#39FF14]/30 border-t-[#39FF14] rounded-full animate-spin" />
+                  <span className="w-4 h-4 border-2 border-[#007AFF]/30 border-t-[#007AFF] rounded-full animate-spin" />
                   Processing...
                 </>
               ) : (

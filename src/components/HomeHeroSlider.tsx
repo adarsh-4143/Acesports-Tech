@@ -62,7 +62,7 @@ export default function HomeHeroSlider() {
   const prevSlide = () => setActive((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-slate-900">
+    <section className="relative w-full min-h-[80vh] overflow-hidden bg-slate-900">
       {/* Background Images */}
       <AnimatePresence initial={false}>
         <motion.div
@@ -91,12 +91,12 @@ export default function HomeHeroSlider() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="pointer-events-auto max-w-2xl mt-10 ml-16 lg:ml-24"
+            className="pointer-events-auto max-w-2xl mt-14 ml-16 lg:ml-24"
           >
             {/* Eyebrow */}
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-px" style={{ background: "#39FF14", boxShadow: "0 0 8px #39FF14" }} />
-              <span className="sport-badge bg-[rgba(57,255,20,0.1)] text-[#39FF14] border border-[rgba(57,255,20,0.3)]">
+              <div className="w-10 h-px" style={{ background: "#007AFF", boxShadow: "0 0 8px #007AFF" }} />
+              <span className="sport-badge bg-[rgba(0, 122, 255,0.1)] text-[#007AFF] border border-[rgba(0, 122, 255,0.3)]">
                 ACE Sports Tech
               </span>
             </div>
@@ -107,7 +107,7 @@ export default function HomeHeroSlider() {
             </h1>
 
             {/* Accent line */}
-            <div className="h-1 w-24 mb-6 rounded" style={{ background: "linear-gradient(90deg, #39FF14, #39FF14)", boxShadow: "0 0 20px rgba(57,255,20,0.6)" }} />
+            <div className="h-1 w-24 mb-6 rounded" style={{ background: "linear-gradient(90deg, #007AFF, #007AFF)", boxShadow: "0 0 20px rgba(0, 122, 255,0.6)" }} />
 
             {/* Subheadline */}
             <motion.p
@@ -138,7 +138,7 @@ export default function HomeHeroSlider() {
       <div className="absolute top-1/2 -translate-y-1/2 left-5 lg:left-10 z-20">
         <button
           onClick={prevSlide}
-          className="w-12 h-12 flex items-center justify-center bg-black/20 hover:bg-[#39FF14] text-white backdrop-blur-md rounded-full transition-all duration-300 border border-white/20 hover:border-[#39FF14]"
+          className="w-12 h-12 flex items-center justify-center bg-black/20 hover:bg-[#007AFF] text-white backdrop-blur-md rounded-full transition-all duration-300 border border-white/20 hover:border-[#007AFF]"
         >
           <ChevronLeft size={24} />
         </button>
@@ -146,7 +146,7 @@ export default function HomeHeroSlider() {
       <div className="absolute top-1/2 -translate-y-1/2 right-5 lg:right-10 z-20">
         <button
           onClick={nextSlide}
-          className="w-12 h-12 flex items-center justify-center bg-black/20 hover:bg-[#39FF14] text-white backdrop-blur-md rounded-full transition-all duration-300 border border-white/20 hover:border-[#39FF14]"
+          className="w-12 h-12 flex items-center justify-center bg-black/20 hover:bg-[#007AFF] text-white backdrop-blur-md rounded-full transition-all duration-300 border border-white/20 hover:border-[#007AFF]"
         >
           <ChevronRight size={24} />
         </button>
@@ -159,7 +159,7 @@ export default function HomeHeroSlider() {
             key={i}
             onClick={() => setActive(i)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              active === i ? "bg-[#39FF14] w-8" : "bg-white/50 hover:bg-white"
+              active === i ? "bg-[#007AFF] w-8" : "bg-white/50 hover:bg-white"
             }`}
           />
         ))}

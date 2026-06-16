@@ -17,7 +17,7 @@ export default function CTABanner({
   secondaryLabel = "View Our Work", secondaryHref = "/projects",
 }: CTABannerProps) {
   return (
-    <section className="relative overflow-hidden py-24" style={{ background: "linear-gradient(135deg, #060f1e 0%, #0B1F3A 50%, #060f1e 100%)" }}>
+    <section className="relative overflow-hidden py-14" style={{ background: "linear-gradient(135deg, #09090b 0%, #0B1F3A 50%, #09090b 100%)" }}>
       {/* Animated grid */}
       <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
 
@@ -25,13 +25,13 @@ export default function CTABanner({
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
           className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(57,255,20,0.12) 0%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(0, 122, 255,0.12) 0%, transparent 70%)" }}
           animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 6, repeat: Infinity }}
         />
         <motion.div
           className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[400px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(57,255,20,0.08) 0%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(0, 122, 255,0.08) 0%, transparent 70%)" }}
           animate={{ scale: [1.2, 1, 1.2], opacity: [1, 0.5, 1] }}
           transition={{ duration: 6, repeat: Infinity }}
         />
@@ -50,9 +50,9 @@ export default function CTABanner({
           className="text-center"
         >
           <div className="flex items-center justify-center gap-3 mb-5">
-            <div className="w-12 h-px" style={{ background: "#39FF14", boxShadow: "0 0 8px #39FF14" }} />
-            <Zap size={16} className="text-[#39FF14]" />
-            <div className="w-12 h-px" style={{ background: "#39FF14", boxShadow: "0 0 8px #39FF14" }} />
+            <div className="w-12 h-px" style={{ background: "#007AFF", boxShadow: "0 0 8px #007AFF" }} />
+            <Zap size={16} className="text-[#007AFF]" />
+            <div className="w-12 h-px" style={{ background: "#007AFF", boxShadow: "0 0 8px #007AFF" }} />
           </div>
 
           <h2 className="font-display font-bold text-white uppercase leading-tight mb-4" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>

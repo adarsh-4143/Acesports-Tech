@@ -43,7 +43,7 @@ export default function EnquiryPopup() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="absolute inset-0 bg-[#060f1e]/80 backdrop-blur-md"
+            className="absolute inset-0 bg-[#09090b]/80 backdrop-blur-md"
           />
           
           {/* Modal Container */}
@@ -52,12 +52,12 @@ export default function EnquiryPopup() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-4xl z-10 rounded-lg shadow-[0_0_50px_rgba(57,255,20,0.15)] overflow-hidden"
+            className="relative w-full max-w-4xl z-10 rounded-lg shadow-[0_0_50px_rgba(0, 122, 255,0.15)] overflow-hidden"
           >
             {/* Close Button */}
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 p-2.5 bg-black/60 hover:bg-[#39FF14] text-white hover:text-black rounded-full transition-all duration-300 border border-white/20 hover:border-[#39FF14] flex items-center justify-center group shadow-xl"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 p-2.5 bg-black/60 hover:bg-[#007AFF] text-white hover:text-black rounded-full transition-all duration-300 border border-white/20 hover:border-[#007AFF] flex items-center justify-center group shadow-xl"
             >
               <X size={18} className="transition-transform group-hover:rotate-90" />
             </button>

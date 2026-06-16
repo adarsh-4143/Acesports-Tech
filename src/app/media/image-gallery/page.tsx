@@ -80,7 +80,7 @@ export default async function ImageGalleryPage({ searchParams }: { searchParams:
         <AnimatedBackgroundLight />
         {/* Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none opacity-5"
-          style={{ background: "radial-gradient(ellipse, rgba(57,255,20,0.4) 0%, transparent 70%)" }} />
+          style={{ background: "radial-gradient(ellipse, rgba(0, 122, 255,0.4) 0%, transparent 70%)" }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
           <div className="flex items-center justify-between mb-10">
@@ -89,7 +89,7 @@ export default async function ImageGalleryPage({ searchParams }: { searchParams:
           </div>
           
           {dynamicProjects.length === 0 ? (
-            <div className="text-center py-20 text-slate-500">No galleries available.</div>
+            <div className="text-center py-16 text-slate-500">No galleries available.</div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {dynamicProjects.map((p, i) => (

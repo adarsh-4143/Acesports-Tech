@@ -26,7 +26,7 @@ export default async function VideoGalleryPage() {
         imageSrc="/services/multisport.png"
       />
 
-      <section className="relative section-pad overflow-hidden" style={{ background: "#030c18" }}>
+      <section className="relative section-pad overflow-hidden" style={{ background: "#09090b" }}>
         <AnimatedBackground />
         
         {/* Glow */}
@@ -42,7 +42,7 @@ export default async function VideoGalleryPage() {
           </div>
           
           {videos.length === 0 ? (
-            <div className="text-center py-20 text-white/50 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-sm">
+            <div className="text-center py-16 text-white/50 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-sm">
               No videos available.
             </div>
           ) : (

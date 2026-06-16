@@ -32,7 +32,7 @@ export default function AboutPage() {
         <AnimatedBackgroundLight />
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
             <div>
               <SectionHeading eyebrow="Who We Are" title="ACE Sports Tech Pvt. Ltd." theme="light" />
               <div className="space-y-4 text-slate-600 leading-relaxed text-sm">
@@ -43,9 +43,9 @@ export default function AboutPage() {
             </div>
             <div className="space-y-4">
               {[
-                { label: "Our Mission", text: "To transform India's sporting landscape by engineering world-class sports infrastructure that enables athletes to perform at their best.", color: "#39FF14" },
-                { label: "Our Vision", text: "To be India's most trusted sports infrastructure partner — known for uncompromising quality, innovation, and the ability to deliver any sporting facility, anywhere.", color: "#39FF14" },
-                { label: "Brand Positioning", text: "Engineering high-performance sports environments and transforming ordinary spaces into world-class sporting destinations.", color: "#39FF14" },
+                { label: "Our Mission", text: "To transform India's sporting landscape by engineering world-class sports infrastructure that enables athletes to perform at their best.", color: "#007AFF" },
+                { label: "Our Vision", text: "To be India's most trusted sports infrastructure partner — known for uncompromising quality, innovation, and the ability to deliver any sporting facility, anywhere.", color: "#007AFF" },
+                { label: "Brand Positioning", text: "Engineering high-performance sports environments and transforming ordinary spaces into world-class sporting destinations.", color: "#007AFF" },
               ].map(item => (
                 <div key={item.label} className="glass-light p-6" style={{ borderLeft: `3px solid ${item.color}`, borderLeftColor: item.color }}>
                   <h3 className="text-xl font-display font-black uppercase mb-3 tracking-wide" style={{ color: item.color }}>{item.label}</h3>
@@ -58,18 +58,18 @@ export default function AboutPage() {
       </section>
 
       {/* Stats */}
-      <section className="relative py-16 overflow-hidden" style={{ background: "#030c18" }}>
+      <section className="relative py-16 overflow-hidden" style={{ background: "#09090b" }}>
         <AnimatedBackground />
         <div className="neon-line absolute top-0 left-0 right-0" />
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: "rgba(57,255,20,0.05)" }}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: "rgba(0, 122, 255,0.05)" }}>
             {[
-              { value: "150+", label: "Projects", color: "#39FF14" },
-              { value: "18+", label: "States", color: "#39FF14" },
-              { value: "2.5M+", label: "Sq Metres", color: "#39FF14" },
+              { value: "150+", label: "Projects", color: "#007AFF" },
+              { value: "18+", label: "States", color: "#007AFF" },
+              { value: "2.5M+", label: "Sq Metres", color: "#007AFF" },
               { value: "10+", label: "Years", color: "#BF5AF2" },
             ].map(s => (
-              <div key={s.label} className="p-10 text-center" style={{ background: "#030c18" }}>
+              <div key={s.label} className="p-10 text-center" style={{ background: "#09090b" }}>
                 <div className="font-display font-bold text-5xl leading-none mb-2" style={{ color: s.color, textShadow: `0 0 30px ${s.color}60` }}>{s.value}</div>
                 <p className="text-white/35 text-xs tracking-[0.25em] uppercase font-semibold">{s.label}</p>
               </div>
@@ -86,9 +86,9 @@ export default function AboutPage() {
           <SectionHeading eyebrow="Brand Attributes" title="What Defines Us" subtitle="Five core principles guide everything we design, build, and deliver." align="center" theme="light" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {[
-              { word: "Innovative", desc: "Pioneering new materials and construction methods in Indian sports infrastructure.", color: "#39FF14" },
-              { word: "Reliable", desc: "Consistent delivery quality, on schedule, across every project we undertake.", color: "#39FF14" },
-              { word: "Performance Driven", desc: "Every surface, system and structure is engineered for peak athletic performance.", color: "#39FF14" },
+              { word: "Innovative", desc: "Pioneering new materials and construction methods in Indian sports infrastructure.", color: "#007AFF" },
+              { word: "Reliable", desc: "Consistent delivery quality, on schedule, across every project we undertake.", color: "#007AFF" },
+              { word: "Performance Driven", desc: "Every surface, system and structure is engineered for peak athletic performance.", color: "#007AFF" },
               { word: "Future Ready", desc: "Integrating smart technology and sustainable design into every facility we build.", color: "#BF5AF2" },
               { word: "Infrastructure Focused", desc: "Deep specialization in sports construction — it is the only thing we do.", color: "#FF3B5C" },
             ].map((attr, i) => (
@@ -105,14 +105,14 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="relative section-pad overflow-hidden" style={{ background: "linear-gradient(135deg, #0B1F3A 0%, #060f1e 100%)" }}>
+      <section className="relative section-pad overflow-hidden" style={{ background: "linear-gradient(135deg, #0B1F3A 0%, #09090b 100%)" }}>
         <AnimatedBackground />
         <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
           <SectionHeading eyebrow="Why ACE" title="The ACE Advantage" subtitle="Six reasons why leading organizations across India choose ACE Sports Tech." />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {whyChooseUs.map((item, i) => {
               const Icon = iconMap[item.icon] || CheckCircle;
-              const colors = ["#39FF14", "#39FF14", "#39FF14", "#BF5AF2", "#FF3B5C", "#39FF14"];
+              const colors = ["#007AFF", "#007AFF", "#007AFF", "#BF5AF2", "#FF3B5C", "#007AFF"];
               const c = colors[i];
               return (
                 <div key={item.title} className="glass p-6 group transition-all duration-300 hover:scale-[1.01] hover:[border-color:var(--hover-color)]"
@@ -134,12 +134,12 @@ export default function AboutPage() {
       <section className="relative section-pad overflow-hidden bg-white border-t border-slate-200">
         <AnimatedBackgroundLight />
         <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             
             {/* Founder Image */}
             <div className="relative group max-w-md mx-auto w-full lg:order-2">
-              <div className="absolute -inset-4 bg-gradient-to-tr from-[#39FF14]/20 to-[#0B1F3A]/20 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-500" />
-              <div className="absolute top-10 -right-6 w-20 h-20 border-2 border-[#39FF14] rounded-full opacity-50 pointer-events-none" />
+              <div className="absolute -inset-4 bg-gradient-to-tr from-[#007AFF]/20 to-[#0B1F3A]/20 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-500" />
+              <div className="absolute top-10 -right-6 w-20 h-20 border-2 border-[#007AFF] rounded-full opacity-50 pointer-events-none" />
               <div className="absolute -bottom-6 -left-6 w-32 h-32 border-2 border-[#0B1F3A] rounded-full opacity-10 pointer-events-none" />
               
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 shadow-2xl">
@@ -154,23 +154,23 @@ export default function AboutPage() {
 
             {/* Quote Card */}
             <div className="lg:order-1">
-              <SectionHeading eyebrow="Leadership" title="A Vision for Indian Sports" theme="light" className="mb-8" />
+              <SectionHeading eyebrow="Leadership" title="A Vision for Indian Sports" theme="light" className="mb-12" />
               
-              <div className="relative bg-white border border-slate-200 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] rounded-2xl p-8 lg:p-12 z-10">
+              <div className="relative bg-white border border-slate-200 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] rounded-2xl p-8 lg:p-8 z-10">
                 {/* Huge Quote Mark */}
-                <div className="absolute -top-8 -left-4 text-[120px] text-[#39FF14] opacity-20 font-serif leading-none select-none">
+                <div className="absolute -top-8 -left-4 text-[120px] text-[#007AFF] opacity-20 font-serif leading-none select-none">
                   &ldquo;
                 </div>
                 
-                <p className="text-slate-600 text-lg lg:text-xl italic leading-relaxed relative z-10 mb-8">
+                <p className="text-slate-600 text-lg lg:text-xl italic leading-relaxed relative z-10 mb-12">
                   &quot;At ACE Sports Tech, our vision goes beyond just building infrastructure. We are engineering the foundation for India&apos;s future athletes. Every track we lay and every turf we install is a commitment to uncompromising excellence, performance, and durability. We believe that world-class facilities are the essential first step towards world-class sporting achievements.&quot;
                 </p>
                 
                 <div className="flex items-center gap-5 border-t border-slate-100 pt-6">
-                  <div className="w-12 h-1 bg-[#39FF14] rounded-full" />
+                  <div className="w-12 h-1 bg-[#007AFF] rounded-full" />
                   <div>
                     <h4 className="font-display font-bold text-slate-900 text-xl lg:text-2xl uppercase tracking-wide">Ambikesh Chauhan</h4>
-                    <p className="text-[#39FF14] font-semibold text-xs tracking-widest uppercase">Founder & Director</p>
+                    <p className="text-[#007AFF] font-semibold text-xs tracking-widest uppercase">Founder & Director</p>
                   </div>
                 </div>
               </div>

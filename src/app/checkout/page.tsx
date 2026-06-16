@@ -149,21 +149,21 @@ export default function CheckoutPage() {
 
   if (isOrderPlaced) {
     return (
-      <div className="min-h-screen pt-24 pb-12 relative bg-slate-50 flex items-center justify-center">
+      <div className="min-min-h-[80vh] pt-24 pb-12 relative bg-slate-50 flex items-center justify-center">
         <AnimatedBackgroundLight />
         <div className="relative z-10 max-w-lg w-full mx-5 bg-white border border-slate-200 p-10 text-center shadow-xl">
           <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 size={40} className="text-[#00CC44]" />
+            <CheckCircle2 size={40} className="text-[#004eaa]" />
           </div>
           <h2 className="text-3xl font-display font-bold text-slate-900 uppercase tracking-wide mb-4">Order Successful!</h2>
-          <p className="text-slate-600 mb-8 leading-relaxed">
+          <p className="text-slate-600 mb-12 leading-relaxed">
             Thank you for your purchase. We have received your order and will contact you shortly regarding shipping and installation details.
           </p>
-          <div className="bg-slate-50 p-4 border border-slate-100 mb-8 text-left">
+          <div className="bg-slate-50 p-4 border border-slate-100 mb-12 text-left">
             <p className="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-1">Order ID</p>
             <p className="text-lg font-mono font-bold text-slate-900">#ACE-{Math.floor(100000 + Math.random() * 900000)}</p>
           </div>
-          <Link href="/products" className="inline-block w-full py-4 bg-slate-900 text-[#39FF14] font-display font-bold uppercase tracking-widest hover:bg-[#39FF14] hover:text-black transition-colors">
+          <Link href="/products" className="inline-block w-full py-4 bg-slate-900 text-[#007AFF] font-display font-bold uppercase tracking-widest hover:bg-[#007AFF] hover:text-black transition-colors">
             Continue Shopping
           </Link>
         </div>
@@ -173,12 +173,12 @@ export default function CheckoutPage() {
 
   if (!hasItems) {
     return (
-      <div className="min-h-screen pt-24 pb-12 relative bg-slate-50 flex flex-col items-center justify-center">
+      <div className="min-min-h-[80vh] pt-24 pb-12 relative bg-slate-50 flex flex-col items-center justify-center">
         <AnimatedBackgroundLight />
         <div className="relative z-10 text-center">
           <h2 className="text-2xl font-display font-bold text-slate-900 mb-4">Your Cart is Empty</h2>
           <p className="text-slate-500 mb-6">You need items in your cart to checkout.</p>
-          <Link href="/products" className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-[#39FF14] font-bold uppercase tracking-wider hover:bg-[#39FF14] hover:text-black transition-colors">
+          <Link href="/products" className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-[#007AFF] font-bold uppercase tracking-wider hover:bg-[#007AFF] hover:text-black transition-colors">
             Browse Products
           </Link>
         </div>
@@ -187,7 +187,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-12 relative bg-slate-50">
+    <div className="min-min-h-[80vh] pt-24 pb-12 relative bg-slate-50">
       <AnimatedBackgroundLight />
       <div className="absolute inset-0 grid-pattern-light opacity-50 pointer-events-none" />
       
@@ -199,7 +199,7 @@ export default function CheckoutPage() {
             animate={{ opacity: 1, y: 0, x: "-50%" }}
             exit={{ opacity: 0, y: -20, x: "-50%" }}
             className={`fixed top-24 left-1/2 z-[100] flex items-center gap-2 px-4 py-2.5 rounded shadow-xl border ${
-              toast.type === "error" ? "bg-red-500/10 border-red-500/50 text-red-500 bg-white" : "bg-[#39FF14]/10 border-[#39FF14]/50 text-[#00CC44] bg-white"
+              toast.type === "error" ? "bg-red-500/10 border-red-500/50 text-red-500 bg-white" : "bg-[#007AFF]/10 border-[#007AFF]/50 text-[#004eaa] bg-white"
             }`}
           >
             {toast.type === "error" ? <AlertCircle size={16} /> : <CheckCircle2 size={16} />}
@@ -210,13 +210,13 @@ export default function CheckoutPage() {
       </AnimatePresence>
       
       <div className="relative z-10 max-w-6xl mx-auto px-5 lg:px-10">
-        <div className="mb-8">
+        <div className="mb-12">
           <Link href="/cart" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors">
             <ArrowLeft size={16} /> Back to Cart
           </Link>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-10">
+        <div className="flex flex-col lg:flex-row gap-14">
           
           {/* Left Column: Form */}
           <div className="flex-1">
@@ -228,11 +228,11 @@ export default function CheckoutPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1">
                     <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Email Address *</label>
-                    <input type="email" name="email" value={form.email} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] transition-all" placeholder="john@example.com" />
+                    <input type="email" name="email" value={form.email} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] transition-all" placeholder="john@example.com" />
                   </div>
                   <div className="space-y-1">
                     <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Phone Number *</label>
-                    <input type="tel" name="phone" maxLength={10} value={form.phone} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] transition-all" placeholder="9876543210" />
+                    <input type="tel" name="phone" maxLength={10} value={form.phone} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] transition-all" placeholder="9876543210" />
                   </div>
                 </div>
               </div>
@@ -243,29 +243,29 @@ export default function CheckoutPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div className="space-y-1">
                     <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">First Name *</label>
-                    <input type="text" name="firstName" value={form.firstName} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] transition-all" placeholder="John" />
+                    <input type="text" name="firstName" value={form.firstName} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] transition-all" placeholder="John" />
                   </div>
                   <div className="space-y-1">
                     <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Last Name *</label>
-                    <input type="text" name="lastName" value={form.lastName} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] transition-all" placeholder="Doe" />
+                    <input type="text" name="lastName" value={form.lastName} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] transition-all" placeholder="Doe" />
                   </div>
                 </div>
                 <div className="space-y-1 mb-4">
                   <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Street Address *</label>
-                  <input type="text" name="address" value={form.address} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] transition-all" placeholder="House/Flat No., Building Name, Street" />
+                  <input type="text" name="address" value={form.address} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] transition-all" placeholder="House/Flat No., Building Name, Street" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-1">
                     <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">City *</label>
-                    <input type="text" name="city" value={form.city} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] transition-all" placeholder="Mumbai" />
+                    <input type="text" name="city" value={form.city} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] transition-all" placeholder="Mumbai" />
                   </div>
                   <div className="space-y-1">
                     <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">State *</label>
-                    <input type="text" name="state" value={form.state} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] transition-all" placeholder="Maharashtra" />
+                    <input type="text" name="state" value={form.state} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] transition-all" placeholder="Maharashtra" />
                   </div>
                   <div className="space-y-1">
                     <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">PIN Code *</label>
-                    <input type="text" name="pinCode" maxLength={6} value={form.pinCode} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] transition-all" placeholder="400001" />
+                    <input type="text" name="pinCode" maxLength={6} value={form.pinCode} onChange={handle} required className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] transition-all" placeholder="400001" />
                   </div>
                 </div>
               </div>
@@ -274,27 +274,27 @@ export default function CheckoutPage() {
               <div className="bg-white p-8 border border-slate-200 shadow-sm">
                 <h3 className="font-display font-bold text-xl uppercase tracking-wide text-slate-900 mb-6 border-b border-slate-100 pb-4">3. Payment Method</h3>
                 <div className="space-y-3">
-                  <label className={`flex items-center gap-4 p-4 border cursor-pointer transition-all ${paymentMethod === 'upi' ? 'border-[#39FF14] bg-[#39FF14]/5' : 'border-slate-200 hover:border-slate-300 bg-slate-50'}`}>
-                    <input type="radio" name="payment" value="upi" checked={paymentMethod === 'upi'} onChange={() => setPaymentMethod('upi')} className="w-4 h-4 text-[#39FF14] focus:ring-[#39FF14]" />
-                    <Wallet size={20} className={paymentMethod === 'upi' ? 'text-[#00CC44]' : 'text-slate-400'} />
+                  <label className={`flex items-center gap-4 p-4 border cursor-pointer transition-all ${paymentMethod === 'upi' ? 'border-[#007AFF] bg-[#007AFF]/5' : 'border-slate-200 hover:border-slate-300 bg-slate-50'}`}>
+                    <input type="radio" name="payment" value="upi" checked={paymentMethod === 'upi'} onChange={() => setPaymentMethod('upi')} className="w-4 h-4 text-[#007AFF] focus:ring-[#007AFF]" />
+                    <Wallet size={20} className={paymentMethod === 'upi' ? 'text-[#004eaa]' : 'text-slate-400'} />
                     <div className="flex-1">
                       <p className="font-bold text-slate-900">UPI / QR</p>
                       <p className="text-xs text-slate-500">Google Pay, PhonePe, Paytm</p>
                     </div>
                   </label>
                   
-                  <label className={`flex items-center gap-4 p-4 border cursor-pointer transition-all ${paymentMethod === 'card' ? 'border-[#39FF14] bg-[#39FF14]/5' : 'border-slate-200 hover:border-slate-300 bg-slate-50'}`}>
-                    <input type="radio" name="payment" value="card" checked={paymentMethod === 'card'} onChange={() => setPaymentMethod('card')} className="w-4 h-4 text-[#39FF14] focus:ring-[#39FF14]" />
-                    <CreditCard size={20} className={paymentMethod === 'card' ? 'text-[#00CC44]' : 'text-slate-400'} />
+                  <label className={`flex items-center gap-4 p-4 border cursor-pointer transition-all ${paymentMethod === 'card' ? 'border-[#007AFF] bg-[#007AFF]/5' : 'border-slate-200 hover:border-slate-300 bg-slate-50'}`}>
+                    <input type="radio" name="payment" value="card" checked={paymentMethod === 'card'} onChange={() => setPaymentMethod('card')} className="w-4 h-4 text-[#007AFF] focus:ring-[#007AFF]" />
+                    <CreditCard size={20} className={paymentMethod === 'card' ? 'text-[#004eaa]' : 'text-slate-400'} />
                     <div className="flex-1">
                       <p className="font-bold text-slate-900">Credit / Debit Card</p>
                       <p className="text-xs text-slate-500">Visa, MasterCard, RuPay</p>
                     </div>
                   </label>
 
-                  <label className={`flex items-center gap-4 p-4 border cursor-pointer transition-all ${paymentMethod === 'cod' ? 'border-[#39FF14] bg-[#39FF14]/5' : 'border-slate-200 hover:border-slate-300 bg-slate-50'}`}>
-                    <input type="radio" name="payment" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="w-4 h-4 text-[#39FF14] focus:ring-[#39FF14]" />
-                    <Banknote size={20} className={paymentMethod === 'cod' ? 'text-[#00CC44]' : 'text-slate-400'} />
+                  <label className={`flex items-center gap-4 p-4 border cursor-pointer transition-all ${paymentMethod === 'cod' ? 'border-[#007AFF] bg-[#007AFF]/5' : 'border-slate-200 hover:border-slate-300 bg-slate-50'}`}>
+                    <input type="radio" name="payment" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="w-4 h-4 text-[#007AFF] focus:ring-[#007AFF]" />
+                    <Banknote size={20} className={paymentMethod === 'cod' ? 'text-[#004eaa]' : 'text-slate-400'} />
                     <div className="flex-1">
                       <p className="font-bold text-slate-900">Cash on Delivery</p>
                       <p className="text-xs text-slate-500">Pay when you receive the order</p>
@@ -320,7 +320,7 @@ export default function CheckoutPage() {
                     <div className="flex-1">
                       <p className="text-xs font-bold line-clamp-1">{item.name}</p>
                       <p className="text-[10px] text-white/50">Qty: {item.quantity}</p>
-                      <p className="text-xs font-mono text-[#39FF14]">₹{parseFloat(item.price).toLocaleString()}</p>
+                      <p className="text-xs font-mono text-[#007AFF]">₹{parseFloat(item.price).toLocaleString()}</p>
                     </div>
                   </div>
                 ))}
@@ -335,18 +335,18 @@ export default function CheckoutPage() {
                   <span>Estimated Tax (18%)</span>
                   <span>₹{tax.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                 </div>
-                <div className="flex justify-between text-[#00CC44]">
+                <div className="flex justify-between text-[#004eaa]">
                   <span>Shipping</span>
                   <span>Free</span>
                 </div>
-                <div className="flex justify-between font-bold text-[#39FF14] text-lg pt-4 mt-2 border-t border-white/10">
+                <div className="flex justify-between font-bold text-[#007AFF] text-lg pt-4 mt-2 border-t border-white/10">
                   <span>Total</span>
                   <span>₹{total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                 </div>
               </div>
 
               <div className="flex items-start gap-3 mb-6 bg-white/5 p-3 text-xs text-white/70">
-                <ShieldCheck size={16} className="text-[#39FF14] shrink-0 mt-0.5" />
+                <ShieldCheck size={16} className="text-[#007AFF] shrink-0 mt-0.5" />
                 <p>Safe and secure payments. 100% Authentic products guaranteed.</p>
               </div>
 
@@ -354,7 +354,7 @@ export default function CheckoutPage() {
                 type="submit" 
                 form="checkout-form"
                 disabled={loading}
-                className="w-full py-4 bg-[#39FF14] text-black font-display font-bold text-sm uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_15px_rgba(57,255,20,0.3)] flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-[#007AFF] text-black font-display font-bold text-sm uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_15px_rgba(0, 122, 255,0.3)] flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <>

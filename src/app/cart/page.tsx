@@ -17,12 +17,12 @@ export default function CartPage() {
   if (isAuthLoading) return null;
 
   return (
-    <div className="min-h-screen pt-24 pb-12 relative bg-slate-50">
+    <div className="min-min-h-[80vh] pt-24 pb-12 relative bg-slate-50">
       <AnimatedBackgroundLight />
       <div className="absolute inset-0 grid-pattern-light opacity-50 pointer-events-none" />
       
       <div className="relative z-10 max-w-5xl mx-auto px-5 lg:px-10">
-        <div className="mb-8">
+        <div className="mb-12">
           <Link href="/products" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors">
             <ArrowLeft size={16} /> Back to Products
           </Link>
@@ -31,24 +31,24 @@ export default function CartPage() {
         <SectionHeading eyebrow="Your Cart" title="Review Your Order" subtitle="Verify your selected infrastructure materials before requesting a quote." theme="light" />
 
         {!isLoggedIn ? (
-          <div className="bg-white border border-slate-200 p-12 text-center shadow-sm mt-8">
+          <div className="bg-white border border-slate-200 p-8 text-center shadow-sm mt-8">
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Zap size={24} className="text-slate-400" />
             </div>
             <h3 className="font-display font-bold text-xl text-slate-900 mb-2">Login Required</h3>
             <p className="text-slate-500 mb-6">Please log in to see your cart and add products.</p>
-            <Link href="/login" className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-[#39FF14] text-sm font-bold uppercase tracking-wider hover:bg-[#39FF14] hover:text-black transition-colors">
+            <Link href="/login" className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-[#007AFF] text-sm font-bold uppercase tracking-wider hover:bg-[#007AFF] hover:text-black transition-colors">
               Go to Login
             </Link>
           </div>
         ) : !hasItems ? (
-          <div className="bg-white border border-slate-200 p-12 text-center shadow-sm mt-8">
+          <div className="bg-white border border-slate-200 p-8 text-center shadow-sm mt-8">
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Zap size={24} className="text-slate-400" />
             </div>
             <h3 className="font-display font-bold text-xl text-slate-900 mb-2">Your cart is empty</h3>
             <p className="text-slate-500 mb-6">Looks like you haven&apos;t added any products yet.</p>
-            <Link href="/products" className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-[#39FF14] text-sm font-bold uppercase tracking-wider hover:bg-[#39FF14] hover:text-black transition-colors">
+            <Link href="/products" className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-[#007AFF] text-sm font-bold uppercase tracking-wider hover:bg-[#007AFF] hover:text-black transition-colors">
               Browse Products
             </Link>
           </div>
@@ -71,7 +71,7 @@ export default function CartPage() {
                           {item.image && <img src={item.image} alt={item.name} className="w-full h-full object-cover" />}
                         </div>
                         <div>
-                          <span className="text-[10px] uppercase font-bold tracking-wider text-[#00CC44] mb-1 block">{item.category}</span>
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-[#004eaa] mb-1 block">{item.category}</span>
                           <h4 className="font-display font-bold text-sm text-slate-900">{item.name}</h4>
                         </div>
                       </div>
@@ -118,7 +118,7 @@ export default function CartPage() {
                     <span>Installation & Shipping</span>
                     <span>Calculated at checkout</span>
                   </div>
-                  <div className="flex justify-between font-bold text-[#39FF14] border-t border-white/10 pt-4 mt-4">
+                  <div className="flex justify-between font-bold text-[#007AFF] border-t border-white/10 pt-4 mt-4">
                     <span>Total Estimated</span>
                     <span>₹{(cart.reduce((acc, item) => acc + (parseFloat(item.price) || 0) * item.quantity, 0) * 1.18).toLocaleString()}</span>
                   </div>
@@ -128,7 +128,7 @@ export default function CartPage() {
                   Final shipping and installation charges will be calculated during checkout based on your delivery address.
                 </p>
 
-                <Link href="/checkout" className="w-full py-3 bg-[#39FF14] text-black font-display font-bold text-sm uppercase tracking-widest hover:bg-white transition-colors flex items-center justify-center gap-2">
+                <Link href="/checkout" className="w-full py-3 bg-[#007AFF] text-black font-display font-bold text-sm uppercase tracking-widest hover:bg-white transition-colors flex items-center justify-center gap-2">
                   Proceed to Checkout <ArrowRight size={16} />
                 </Link>
               </div>

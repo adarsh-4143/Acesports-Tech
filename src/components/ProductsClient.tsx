@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ShoppingCart, Filter, CheckCircle2, Zap } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
-const accentColors = ["#39FF14","#39FF14","#39FF14","#BF5AF2","#FF3B5C","#39FF14"];
+const accentColors = ["#007AFF","#007AFF","#007AFF","#BF5AF2","#FF3B5C","#007AFF"];
 const categories = ["All", "Running Track", "Artificial Turf", "Court Surface", "Sports Lighting", "Technology", "Safety Systems"];
 
 interface ProductsClientProps {
@@ -35,7 +35,7 @@ export default function ProductsClient({ products }: ProductsClientProps) {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-10 mt-10">
+    <div className="flex flex-col lg:flex-row gap-14 mt-14">
       {/* Sidebar Filters */}
       <aside className="w-full lg:w-64 shrink-0">
         <div className="bg-white border border-slate-200 p-6 shadow-sm sticky top-24">
@@ -51,7 +51,7 @@ export default function ProductsClient({ products }: ProductsClientProps) {
                   onClick={() => setSelectedCategory(cat)}
                   className={`w-full text-left flex items-center justify-between px-3 py-2 text-sm transition-colors ${
                     selectedCategory === cat 
-                    ? "bg-slate-900 text-[#39FF14] font-medium" 
+                    ? "bg-slate-900 text-[#007AFF] font-medium" 
                     : "text-slate-600 hover:bg-slate-50"
                   }`}
                 >
@@ -63,12 +63,12 @@ export default function ProductsClient({ products }: ProductsClientProps) {
           </ul>
           
           <div className="mt-8 bg-slate-50 border border-slate-200 p-5 text-center">
-            <div className="w-10 h-10 bg-[#39FF14]/10 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Zap size={18} className="text-[#00CC44]" />
+            <div className="w-10 h-10 bg-[#007AFF]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Zap size={18} className="text-[#004eaa]" />
             </div>
             <h4 className="font-display font-bold text-slate-900 text-sm uppercase tracking-wide mb-2">Need Custom Infrastructure?</h4>
             <p className="text-xs text-slate-500 leading-relaxed mb-4">Our specialists can help you design and deploy a complete solution.</p>
-            <Link href="/contact" className="inline-block px-4 py-2 bg-slate-900 text-[#39FF14] text-xs font-bold uppercase tracking-wider hover:bg-[#39FF14] hover:text-black transition-colors w-full">
+            <Link href="/contact" className="inline-block px-4 py-2 bg-slate-900 text-[#007AFF] text-xs font-bold uppercase tracking-wider hover:bg-[#007AFF] hover:text-black transition-colors w-full">
               Contact Us
             </Link>
           </div>
@@ -98,7 +98,7 @@ export default function ProductsClient({ products }: ProductsClientProps) {
                 >
                   {/* Visual header */}
                   <div className="h-48 relative overflow-hidden group/image" style={{ background: `linear-gradient(135deg, ${color}15 0%, rgba(6,15,30,0.8) 100%)` }}>
-                    <div className="absolute inset-0 bg-[#060f1e]/40 z-10 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-[#09090b]/40 z-10 mix-blend-multiply" />
                     {/* The image */}
                     {product.images && product.images[0] && (
                       <img 
@@ -121,7 +121,7 @@ export default function ProductsClient({ products }: ProductsClientProps) {
 
                   <div className="p-6 flex flex-col flex-grow">
                     <h3 className="font-display font-bold text-white text-lg uppercase tracking-wide mb-1">{product.productName}</h3>
-                    <p className="text-[#39FF14]/80 text-xs font-mono uppercase mb-3">{product.modelName}</p>
+                    <p className="text-[#007AFF]/80 text-xs font-mono uppercase mb-3">{product.modelName}</p>
                     <p className="text-white/45 text-sm leading-relaxed mb-4 flex-grow line-clamp-2">{product.description}</p>
                     
                     <ul className="space-y-2 mb-6">
@@ -142,7 +142,7 @@ export default function ProductsClient({ products }: ProductsClientProps) {
                       </div>
                       <button
                         onClick={(e) => handleBuyNow(e, product)}
-                        className="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-display font-bold tracking-[0.1em] uppercase transition-all duration-300 bg-white text-slate-900 hover:bg-[#39FF14] hover:text-black z-20 relative"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-display font-bold tracking-[0.1em] uppercase transition-all duration-300 bg-white text-slate-900 hover:bg-[#007AFF] hover:text-black z-20 relative"
                       >
                         <ShoppingCart size={14} />
                         Add

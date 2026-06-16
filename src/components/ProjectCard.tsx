@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { MapPin, Calendar, Maximize2 } from "lucide-react";
 
 const categoryConfig: Record<string, { color: string; bg: string; gradient: string }> = {
-  "Artificial Turf":  { color: "#39FF14", bg: "rgba(57,255,20,0.1)",   gradient: "from-[#39FF14]/20 to-transparent" },
-  "Synthetic Track":  { color: "#39FF14", bg: "rgba(57,255,20,0.1)",   gradient: "from-[#39FF14]/20 to-transparent" },
+  "Artificial Turf":  { color: "#007AFF", bg: "rgba(0, 122, 255,0.1)",   gradient: "from-[#007AFF]/20 to-transparent" },
+  "Synthetic Track":  { color: "#007AFF", bg: "rgba(0, 122, 255,0.1)",   gradient: "from-[#007AFF]/20 to-transparent" },
   "Sports Academy":   { color: "#BF5AF2", bg: "rgba(191,90,242,0.1)", gradient: "from-[#BF5AF2]/20 to-transparent" },
-  "Sports Court":     { color: "#39FF14", bg: "rgba(57,255,20,0.1)",   gradient: "from-[#39FF14]/20 to-transparent" },
-  "Multi-Sport":      { color: "#39FF14", bg: "rgba(0,255,102,0.1)",   gradient: "from-[#00FF66]/20 to-transparent" },
+  "Sports Court":     { color: "#007AFF", bg: "rgba(0, 122, 255,0.1)",   gradient: "from-[#007AFF]/20 to-transparent" },
+  "Multi-Sport":      { color: "#007AFF", bg: "rgba(0, 122, 255,0.1)",   gradient: "from-[#007AFF]/20 to-transparent" },
   "Stadium":          { color: "#FF3B5C", bg: "rgba(255,59,92,0.1)",   gradient: "from-[#FF3B5C]/20 to-transparent" },
 };
 
@@ -18,7 +18,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ id, title, location, category, year, description, area, duration, index = 0, image }: ProjectCardProps) {
-  const cfg = categoryConfig[category] || { color: "#39FF14", bg: "rgba(57,255,20,0.1)", gradient: "from-[#39FF14]/20 to-transparent" };
+  const cfg = categoryConfig[category] || { color: "#007AFF", bg: "rgba(0, 122, 255,0.1)", gradient: "from-[#007AFF]/20 to-transparent" };
 
   return (
     <motion.div

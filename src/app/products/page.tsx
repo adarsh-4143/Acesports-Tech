@@ -95,7 +95,7 @@ export default async function ProductsPage() {
       </section>
 
       {/* Why our products */}
-      <section className="relative section-pad overflow-hidden" style={{ background: "linear-gradient(135deg, #0B1F3A 0%, #060f1e 100%)" }}>
+      <section className="relative section-pad overflow-hidden" style={{ background: "linear-gradient(135deg, #0B1F3A 0%, #09090b 100%)" }}>
         <AnimatedBackground />
         <div className="absolute inset-0 grid-pattern opacity-15 pointer-events-none" />
         <div className="neon-line absolute top-0 left-0 right-0" />
@@ -103,12 +103,12 @@ export default async function ProductsPage() {
           <SectionHeading eyebrow="Why Our Products" title="Certified Materials, Expert Installation" subtitle="Every product sourced from internationally certified manufacturers and installed by trained specialists." align="center" />
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: "rgba(255,255,255,0.04)" }}>
             {[
-              { title: "Globally Certified", desc: "FIFA, IAAF, FIBA, ITF certification as applicable.", color: "#39FF14" },
-              { title: "Warranty Backed", desc: "Manufacturer warranties and our installation guarantee.", color: "#39FF14" },
-              { title: "Expert Installation", desc: "Supplied and installed by our trained technical teams.", color: "#39FF14" },
+              { title: "Globally Certified", desc: "FIFA, IAAF, FIBA, ITF certification as applicable.", color: "#007AFF" },
+              { title: "Warranty Backed", desc: "Manufacturer warranties and our installation guarantee.", color: "#007AFF" },
+              { title: "Expert Installation", desc: "Supplied and installed by our trained technical teams.", color: "#007AFF" },
               { title: "Ongoing Support", desc: "Post-installation maintenance and on-call technical support.", color: "#BF5AF2" },
             ].map((item) => (
-              <div key={item.title} className="p-8 text-center group" style={{ background: "#060f1e" }}>
+              <div key={item.title} className="p-8 text-center group" style={{ background: "#09090b" }}>
                 <div className="w-2 h-2 rounded-full mx-auto mb-5" style={{ background: item.color, boxShadow: `0 0 10px ${item.color}` }} />
                 <h3 className="font-display font-bold text-white text-sm uppercase tracking-wide mb-2">{item.title}</h3>
                 <p className="text-white/40 text-xs leading-relaxed">{item.desc}</p>

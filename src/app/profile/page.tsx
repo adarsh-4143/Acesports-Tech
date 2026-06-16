@@ -263,7 +263,7 @@ export default function ProfilePage() {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-12 relative bg-slate-50 flex justify-center">
+    <div className="min-min-h-[80vh] pt-24 pb-12 relative bg-slate-50 flex justify-center">
       <AnimatedBackgroundLight />
       <div className="absolute inset-0 grid-pattern-light opacity-50 pointer-events-none" />
 
@@ -275,7 +275,7 @@ export default function ProfilePage() {
             animate={{ opacity: 1, y: 0, x: "-50%" }}
             exit={{ opacity: 0, y: -20, x: "-50%" }}
             className={`fixed top-24 left-1/2 z-[100] flex items-center gap-2 px-4 py-2.5 rounded shadow-xl border ${
-              toast.type === "error" ? "bg-red-500/10 border-red-500/50 text-red-500 bg-white" : "bg-[#39FF14]/10 border-[#39FF14]/50 text-[#00CC44] bg-white"
+              toast.type === "error" ? "bg-red-500/10 border-red-500/50 text-red-500 bg-white" : "bg-[#007AFF]/10 border-[#007AFF]/50 text-[#004eaa] bg-white"
             }`}
           >
             {toast.type === "error" ? <AlertCircle size={16} /> : <CheckCircle2 size={16} />}
@@ -290,9 +290,9 @@ export default function ProfilePage() {
         {/* Sidebar Navigation */}
         <aside className="w-full md:w-72 flex-shrink-0">
           <div className="bg-white border border-slate-200 shadow-xl p-6 sticky top-28">
-            <div className="text-center mb-8 border-b border-slate-100 pb-6">
-              <div className="w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-4 shadow-[0_0_15px_rgba(57,255,20,0.4)]">
-                <span className="text-[#39FF14] text-2xl font-bold font-display tracking-widest uppercase">
+            <div className="text-center mb-12 border-b border-slate-100 pb-6">
+              <div className="w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-4 shadow-[0_0_15px_rgba(0, 122, 255,0.4)]">
+                <span className="text-[#007AFF] text-2xl font-bold font-display tracking-widest uppercase">
                   {userDetails.name ? userDetails.name.split(' ').map(n => n?.[0] || '').join('') : 'U'}
                 </span>
               </div>
@@ -309,16 +309,16 @@ export default function ProfilePage() {
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex items-center gap-3 w-full px-4 py-3 text-sm font-semibold tracking-wide uppercase transition-all duration-300 relative overflow-hidden ${
-                      isActive ? "text-[#39FF14] bg-slate-900" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                      isActive ? "text-[#007AFF] bg-slate-900" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                     }`}
                   >
                     {isActive && (
                       <motion.div 
                         layoutId="activeTab" 
-                        className="absolute left-0 top-0 bottom-0 w-1 bg-[#39FF14]"
+                        className="absolute left-0 top-0 bottom-0 w-1 bg-[#007AFF]"
                       />
                     )}
-                    <Icon size={18} className={isActive ? "text-[#39FF14]" : "opacity-70"} />
+                    <Icon size={18} className={isActive ? "text-[#007AFF]" : "opacity-70"} />
                     <span className="relative z-10">{tab.label}</span>
                   </button>
                 );
@@ -351,13 +351,13 @@ export default function ProfilePage() {
                 <div>
                   <h1 className="text-2xl font-display font-bold text-slate-900 uppercase tracking-wide mb-6 border-b border-slate-100 pb-4">Dashboard Overview</h1>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                    <div className="p-6 bg-slate-50 border border-slate-100 flex flex-col items-center justify-center text-center hover:border-[#39FF14]/50 transition-colors">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+                    <div className="p-6 bg-slate-50 border border-slate-100 flex flex-col items-center justify-center text-center hover:border-[#007AFF]/50 transition-colors">
                       <Package size={28} className="text-slate-400 mb-3" />
                       <span className="text-3xl font-bold text-slate-900 font-display">{orders.length}</span>
                       <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest mt-1">Total Orders</span>
                     </div>
-                    <div className="p-6 bg-slate-50 border border-slate-100 flex flex-col items-center justify-center text-center hover:border-[#39FF14]/50 transition-colors">
+                    <div className="p-6 bg-slate-50 border border-slate-100 flex flex-col items-center justify-center text-center hover:border-[#007AFF]/50 transition-colors">
                       <Truck size={28} className="text-blue-400 mb-3" />
                       <span className="text-3xl font-bold text-slate-900 font-display">{orders.filter(o => o.statusName === 'Shipped').length}</span>
                       <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest mt-1">In Transit</span>
@@ -487,7 +487,7 @@ export default function ProfilePage() {
                             required
                             value={userDetails.name}
                             onChange={(e) => handleDetailsChange("name", e.target.value)}
-                            className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70"
+                            className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black disabled:opacity-70"
                           />
                         </div>
                       </div>
@@ -503,7 +503,7 @@ export default function ProfilePage() {
                             required
                             value={userDetails.email}
                             onChange={(e) => handleDetailsChange("email", e.target.value)}
-                            className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70"
+                            className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black disabled:opacity-70"
                           />
                         </div>
                       </div>
@@ -520,7 +520,7 @@ export default function ProfilePage() {
                             maxLength={10}
                             value={userDetails.phone}
                             onChange={(e) => handleDetailsChange("phone", e.target.value)}
-                            className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70"
+                            className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black disabled:opacity-70"
                           />
                         </div>
                       </div>
@@ -534,7 +534,7 @@ export default function ProfilePage() {
                           disabled={!isEditing}
                           value={userDetails.business_name}
                           onChange={(e) => handleDetailsChange("business_name", e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70"
+                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black disabled:opacity-70"
                           placeholder="Your Company Pvt Ltd"
                         />
                       </div>
@@ -546,7 +546,7 @@ export default function ProfilePage() {
                           maxLength={15}
                           value={userDetails.gst_number}
                           onChange={(e) => handleDetailsChange("gst_number", e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70 uppercase"
+                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black disabled:opacity-70 uppercase"
                           placeholder="22AAAAA0000A1Z5"
                         />
                       </div>
@@ -564,7 +564,7 @@ export default function ProfilePage() {
                           value={userDetails.address}
                           onChange={(e) => handleDetailsChange("address", e.target.value)}
                           rows={3}
-                          className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70 resize-none"
+                          className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black disabled:opacity-70 resize-none"
                         />
                       </div>
                     </div>
@@ -578,7 +578,7 @@ export default function ProfilePage() {
                           required
                           value={userDetails.city}
                           onChange={(e) => handleDetailsChange("city", e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70"
+                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black disabled:opacity-70"
                           placeholder="Your City"
                         />
                       </div>
@@ -590,7 +590,7 @@ export default function ProfilePage() {
                           required
                           value={userDetails.state}
                           onChange={(e) => handleDetailsChange("state", e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70"
+                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black disabled:opacity-70"
                           placeholder="Your State"
                         />
                       </div>
@@ -602,7 +602,7 @@ export default function ProfilePage() {
                           required
                           value={userDetails.pincode}
                           onChange={(e) => handleDetailsChange("pincode", e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14] outline-none transition-all text-sm text-black disabled:opacity-70"
+                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-[#007AFF] focus:ring-1 focus:ring-[#007AFF] outline-none transition-all text-sm text-black disabled:opacity-70"
                           placeholder="Pincode"
                         />
                       </div>
@@ -619,11 +619,11 @@ export default function ProfilePage() {
                           <button 
                             type="submit" 
                             disabled={loading}
-                            className="flex items-center justify-center gap-2 px-8 py-3 bg-slate-900 text-[#39FF14] font-semibold text-xs uppercase tracking-widest hover:bg-[#39FF14] hover:text-black transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                            className="flex items-center justify-center gap-2 px-8 py-3 bg-slate-900 text-[#007AFF] font-semibold text-xs uppercase tracking-widest hover:bg-[#007AFF] hover:text-black transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                           >
                             {loading ? (
                               <>
-                                <span className="w-3 h-3 border-2 border-[#39FF14]/30 border-t-[#39FF14] rounded-full animate-spin" />
+                                <span className="w-3 h-3 border-2 border-[#007AFF]/30 border-t-[#007AFF] rounded-full animate-spin" />
                                 Processing...
                               </>
                             ) : (
@@ -663,7 +663,7 @@ export default function ProfilePage() {
                         </div>
                         <label className="relative inline-flex items-center cursor-pointer">
                           <input type="checkbox" className="sr-only peer" checked={newsletter} onChange={() => setNewsletter(!newsletter)} />
-                          <div className="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#39FF14]"></div>
+                          <div className="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#007AFF]"></div>
                         </label>
                       </div>
 
@@ -674,7 +674,7 @@ export default function ProfilePage() {
                         </div>
                         <label className="relative inline-flex items-center cursor-pointer">
                           <input type="checkbox" className="sr-only peer" checked={smsAlerts} onChange={() => setSmsAlerts(!smsAlerts)} />
-                          <div className="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#39FF14]"></div>
+                          <div className="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#007AFF]"></div>
                         </label>
                       </div>
                     </div>

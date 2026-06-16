@@ -53,7 +53,7 @@ function Marquee({ items, reverse = false }: { items: string[]; reverse?: boolea
         {track.map((item, i) => (
           <span key={i} className="flex items-center gap-6">
             <span className={`font-display font-bold text-2xl uppercase tracking-widest ${reverse ? "text-white" : "text-[#0B1F3A]"}`}>{item}</span>
-            <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: reverse ? "#39FF14" : "#0B1F3A", boxShadow: reverse ? "0 0 6px #39FF14" : "none" }} />
+            <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: reverse ? "#007AFF" : "#0B1F3A", boxShadow: reverse ? "0 0 6px #007AFF" : "none" }} />
           </span>
         ))}
       </div>
@@ -79,11 +79,11 @@ function TestimonialsSlider() {
           transition={{ duration: 0.5 }}
           className="glass-electric p-8"
         >
-          <div className="font-display text-6xl text-[#39FF14] opacity-20 leading-none mb-2">&quot;</div>
+          <div className="font-display text-6xl text-[#007AFF] opacity-20 leading-none mb-2">&quot;</div>
           <p className="text-white/70 text-base leading-relaxed mb-6 italic">{testimonials[active].quote}</p>
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 flex items-center justify-center font-display font-bold text-sm"
-              style={{ background: "linear-gradient(135deg, #39FF14, #00CC44)", color: "#060f1e" }}>
+              style={{ background: "linear-gradient(135deg, #007AFF, #004eaa)", color: "#09090b" }}>
               {testimonials[active].name.charAt(0)}
             </div>
             <div>
@@ -98,7 +98,7 @@ function TestimonialsSlider() {
         {testimonials.map((_, i) => (
           <button key={i} onClick={() => setActive(i)}
             className="w-8 h-0.5 transition-all duration-300"
-            style={{ background: i === active ? "#39FF14" : "rgba(255,255,255,0.15)", boxShadow: i === active ? "0 0 8px #39FF14" : "none" }}
+            style={{ background: i === active ? "#007AFF" : "rgba(255,255,255,0.15)", boxShadow: i === active ? "0 0 8px #007AFF" : "none" }}
           />
         ))}
       </div>
@@ -128,7 +128,7 @@ export default function HomePage() {
       <ServicesSection />
 
       {/* ── MARQUEE 2 ───────────────────────────── */}
-      <div className="py-2 overflow-hidden" style={{ background: "#030c18", borderTop: "1px solid rgba(57,255,20,0.08)", borderBottom: "1px solid rgba(57,255,20,0.08)" }}>
+      <div className="py-2 overflow-hidden" style={{ background: "#09090b", borderTop: "1px solid rgba(0, 122, 255,0.08)", borderBottom: "1px solid rgba(0, 122, 255,0.08)" }}>
         <Marquee items={["150+ Projects","18+ States","2.5M+ Sq Metres","10+ Years Experience","FIFA Quality Pro","IAAF Class 1","FIBA Compliant","ITF Certified"]} reverse />
       </div>
 
@@ -175,7 +175,7 @@ function AboutSection() {
       <AnimatedBackgroundLight />
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           {/* Left: Image Collage */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -189,7 +189,7 @@ function AboutSection() {
             </div>
             
             {/* Overlapping Smaller Image */}
-            <div className="absolute -bottom-10 -right-4 lg:-right-10 w-2/3 max-w-[280px] aspect-square rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white z-10">
+            <div className="absolute -bottom-10 -right-4 lg:-right-6 w-2/3 max-w-[280px] aspect-square rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white z-10">
               <img src="/about2.png" alt="Indoor Sports Arena" className="w-full h-full object-cover" />
             </div>
           </motion.div>
@@ -199,10 +199,10 @@ function AboutSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col pt-16 lg:pt-0"
+            className="flex flex-col pt-14 lg:pt-0"
           >
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-5 h-5 rounded-full bg-[#060f1e] flex items-center justify-center shrink-0">
+              <div className="w-5 h-5 rounded-full bg-[#09090b] flex items-center justify-center shrink-0">
                 <ArrowRight size={12} className="text-white" />
               </div>
               <span className="text-slate-800 font-bold text-xs tracking-widest uppercase">
@@ -214,22 +214,22 @@ function AboutSection() {
               Artificial Turf Construction in India
             </h2>
             
-            <p className="text-slate-600 leading-relaxed mb-8 text-[15px]">
+            <p className="text-slate-600 leading-relaxed mb-12 text-[15px]">
               We are India&apos;s best sports infrastructure company with 10+ years of expertise in Artificial Turf Construction in India. We design and make world-class multi-sport courts, including pickleball, badminton, football, basketball, and cricket, along with premium landscape grass, durable turf nets, and complete project consultancy...
             </p>
 
             <ul className="space-y-3 mb-10">
               {["Proven Expertise", "Multi-Sport Solutions", "Complete Consultancy"].map((item, i) => (
                 <li key={i} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#39FF14] flex items-center justify-center shrink-0 shadow-md">
-                    <CheckCircle size={12} className="text-[#060f1e]" />
+                  <div className="w-5 h-5 rounded-full bg-[#007AFF] flex items-center justify-center shrink-0 shadow-md">
+                    <CheckCircle size={12} className="text-[#09090b]" />
                   </div>
                   <span className="text-slate-800 font-semibold text-[15px]">{item}</span>
                 </li>
               ))}
             </ul>
 
-            <Link href="/about" className="self-start px-8 py-3.5 bg-[#0B1F3A] text-white font-semibold rounded hover:bg-[#060f1e] transition-colors shadow-lg shadow-[#0B1F3A]/20">
+            <Link href="/about" className="self-start px-8 py-3.5 bg-[#0B1F3A] text-white font-semibold rounded hover:bg-[#09090b] transition-colors shadow-lg shadow-[#0B1F3A]/20">
               Learn More
             </Link>
           </motion.div>
@@ -242,17 +242,17 @@ function AboutSection() {
 // ── SERVICES ──────────────────────────────────────────────────
 function ServicesSection() {
   return (
-    <section className="relative section-pad overflow-hidden" style={{ background: "#060f1e" }}>
+    <section className="relative section-pad overflow-hidden" style={{ background: "#09090b" }}>
       <AnimatedBackground />
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
           <SectionHeading
             eyebrow="What We Build"
             title="Core Services"
             subtitle="End-to-end design, engineering and construction for every type of sports facility."
             className="mb-0"
-            accentColor="#39FF14"
+            accentColor="#007AFF"
           />
           <Link href="/services" className="btn-outline-electric shrink-0 self-start lg:self-auto">
             All Services <ArrowRight size={14} />
@@ -274,10 +274,10 @@ function ProjectsSection() {
       <AnimatedBackgroundLight />
       {/* Glow */}
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] pointer-events-none opacity-5"
-        style={{ background: "radial-gradient(circle, rgba(57,255,20,0.5) 0%, transparent 70%)" }} />
+        style={{ background: "radial-gradient(circle, rgba(0, 122, 255,0.5) 0%, transparent 70%)" }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
           <SectionHeading
             eyebrow="Our Portfolio"
             title="Featured Projects"
@@ -304,11 +304,11 @@ function WhyUsSection() {
   const inView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section ref={ref} className="relative section-pad overflow-hidden" style={{ background: "#060f1e" }}>
+    <section ref={ref} className="relative section-pad overflow-hidden" style={{ background: "#09090b" }}>
       <AnimatedBackground />
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -318,24 +318,24 @@ function WhyUsSection() {
               eyebrow="Why ACE"
               title="The ACE Advantage"
               subtitle="Six reasons why India's leading organizations trust us for their most important projects."
-              accentColor="#39FF14"
+              accentColor="#007AFF"
             />
             <Link href="/about" className="btn-outline-electric">
               Learn More <ArrowUpRight size={13} />
             </Link>
 
             <div className="mt-12 relative rounded-sm overflow-hidden border border-white/10 hidden lg:block group shadow-2xl">
-              <div className="absolute inset-0 bg-[#060f1e]/40 z-10 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-0" />
+              <div className="absolute inset-0 bg-[#09090b]/40 z-10 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-0" />
               <img src="/services/stadium.png" alt="ACE Advantage" className="w-full h-64 object-cover opacity-80 transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 border border-[#39FF14]/20 pointer-events-none" />
-              <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#060f1e] to-transparent z-20 pointer-events-none" />
+              <div className="absolute inset-0 border border-[#007AFF]/20 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#09090b] to-transparent z-20 pointer-events-none" />
             </div>
           </motion.div>
 
           <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {whyChooseUs.map((item, i) => {
               const Icon = iconMap[item.icon] || CheckCircle;
-              const colors = ["#39FF14", "#39FF14", "#39FF14", "#BF5AF2", "#FF3B5C", "#39FF14"];
+              const colors = ["#007AFF", "#007AFF", "#007AFF", "#BF5AF2", "#FF3B5C", "#007AFF"];
               const c = colors[i % colors.length];
               return (
                 <motion.div
@@ -377,11 +377,11 @@ function ProcessSection() {
         <div className="relative">
           {/* Connector line */}
           <div className="hidden lg:block absolute top-10 left-0 right-0 h-px pointer-events-none"
-            style={{ background: "linear-gradient(90deg, transparent, rgba(57,255,20,0.2), transparent)" }} />
+            style={{ background: "linear-gradient(90deg, transparent, rgba(0, 122, 255,0.2), transparent)" }} />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {processSteps.map((step, i) => {
-              const colors = ["#39FF14", "#39FF14", "#39FF14", "#BF5AF2", "#FF3B5C", "#39FF14"];
+              const colors = ["#007AFF", "#007AFF", "#007AFF", "#BF5AF2", "#FF3B5C", "#007AFF"];
               const bgImages = [
                 "/services/tech.png",
                 "/services/stadium.png",
@@ -406,12 +406,12 @@ function ProcessSection() {
                     style={{ backgroundImage: `url(${bgImages[i % bgImages.length]})` }}
                   />
                   {/* Dark Gradient Overlay to make text readable */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060f1e] via-[#060f1e]/80 to-[#060f1e]/40 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-[#09090b]/40 pointer-events-none" />
 
                   {/* Content */}
                   <div className="relative z-10 h-full flex flex-col justify-end">
                     <div
-                      className="w-10 h-10 flex items-center justify-center font-display font-bold text-sm mb-5 transition-all duration-300 group-hover:scale-110 bg-[#060f1e]"
+                      className="w-10 h-10 flex items-center justify-center font-display font-bold text-sm mb-5 transition-all duration-300 group-hover:scale-110 bg-[#09090b]"
                       style={{ border: `1px solid ${c}40`, color: c, boxShadow: `0 0 15px ${c}20` }}
                     >
                       {step.step}
@@ -440,18 +440,18 @@ function IndustriesSection() {
   const inView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section ref={ref} className="relative py-16 overflow-hidden" style={{ background: "#030c18", borderTop: "1px solid rgba(57,255,20,0.08)", borderBottom: "1px solid rgba(57,255,20,0.08)" }}>
+    <section ref={ref} className="relative py-16 overflow-hidden" style={{ background: "#09090b", borderTop: "1px solid rgba(0, 122, 255,0.08)", borderBottom: "1px solid rgba(0, 122, 255,0.08)" }}>
       <AnimatedBackground />
       <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-10">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-14">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             className="lg:w-64 shrink-0"
           >
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-6 h-px" style={{ background: "#39FF14", boxShadow: "0 0 6px #39FF14" }} />
-              <span className="text-[#39FF14] text-xs tracking-[0.3em] uppercase font-semibold font-display">Sectors</span>
+              <div className="w-6 h-px" style={{ background: "#007AFF", boxShadow: "0 0 6px #007AFF" }} />
+              <span className="text-[#007AFF] text-xs tracking-[0.3em] uppercase font-semibold font-display">Sectors</span>
             </div>
             <h3 className="font-display font-bold text-white text-3xl uppercase">Industries<br />We Serve</h3>
           </motion.div>
@@ -467,11 +467,11 @@ function IndustriesSection() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.3 + i * 0.05 }}
-                whileHover={{ borderColor: "rgba(57,255,20,0.5)", color: "#39FF14", background: "rgba(57,255,20,0.05)" }}
+                whileHover={{ borderColor: "rgba(0, 122, 255,0.5)", color: "#007AFF", background: "rgba(0, 122, 255,0.05)" }}
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-xs text-white/50 font-semibold tracking-wide uppercase transition-all duration-200 cursor-default"
                 style={{ border: "1px solid rgba(255,255,255,0.08)" }}
               >
-                <Zap size={10} className="text-[#39FF14] opacity-50" />
+                <Zap size={10} className="text-[#007AFF] opacity-50" />
                 {ind}
               </motion.span>
             ))}
@@ -487,14 +487,14 @@ function StatsSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const statConfigs = [
-    { ...stats[0], color: "#39FF14", icon: TrendingUp },
-    { ...stats[1], color: "#39FF14", icon: MapPin },
-    { ...stats[2], color: "#39FF14", icon: BarChart3 },
+    { ...stats[0], color: "#007AFF", icon: TrendingUp },
+    { ...stats[1], color: "#007AFF", icon: MapPin },
+    { ...stats[2], color: "#007AFF", icon: BarChart3 },
     { ...stats[3], color: "#BF5AF2", icon: Award },
   ];
 
   return (
-    <section ref={ref} className="relative section-pad overflow-hidden" style={{ background: "linear-gradient(135deg, #0B1F3A 0%, #060f1e 100%)" }}>
+    <section ref={ref} className="relative section-pad overflow-hidden" style={{ background: "linear-gradient(135deg, #0B1F3A 0%, #09090b 100%)" }}>
       <AnimatedBackground />
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
@@ -544,11 +544,11 @@ function TestimonialsSection() {
   const inView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section ref={ref} className="relative section-pad overflow-hidden" style={{ background: "#060f1e" }}>
+    <section ref={ref} className="relative section-pad overflow-hidden" style={{ background: "#09090b" }}>
       <AnimatedBackground />
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -558,11 +558,11 @@ function TestimonialsSection() {
               eyebrow="Client Testimonials"
               title="What Our Clients Say"
               subtitle="Trusted by government bodies, private academies, and sports organizations across India."
-              accentColor="#39FF14"
+              accentColor="#007AFF"
             />
             <div className="flex gap-4">
               {["FIFA", "IAAF", "FIBA", "ITF"].map(cert => (
-                <span key={cert} className="text-[10px] font-display font-bold tracking-widest px-2.5 py-1.5 border border-[rgba(57,255,20,0.2)] text-[#39FF14]/60">
+                <span key={cert} className="text-[10px] font-display font-bold tracking-widest px-2.5 py-1.5 border border-[rgba(0, 122, 255,0.2)] text-[#007AFF]/60">
                   {cert}
                 </span>
               ))}

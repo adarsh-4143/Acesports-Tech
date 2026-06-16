@@ -56,7 +56,7 @@ function ParticleField() {
       x: Math.random() * w, y: Math.random() * h,
       vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
       r: Math.random() * 1.5 + 0.3,
-      color: Math.random() > 0.6 ? "#39FF14" : Math.random() > 0.5 ? "#39FF14" : "#ffffff",
+      color: Math.random() > 0.6 ? "#007AFF" : Math.random() > 0.5 ? "#007AFF" : "#ffffff",
       opacity: Math.random() * 0.6 + 0.1,
     }));
 
@@ -79,7 +79,7 @@ function ParticleField() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = "#39FF14";
+            ctx.strokeStyle = "#007AFF";
             ctx.globalAlpha = (1 - d / 120) * 0.12;
             ctx.lineWidth = 0.5;
             ctx.stroke();
@@ -102,9 +102,9 @@ function LightStreaks() {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       {[
-        { top: "20%", left: "-10%", w: "60%", r: "-20deg", color: "rgba(57,255,20,0.06)" },
-        { top: "60%", left: "40%", w: "50%", r: "15deg", color: "rgba(57,255,20,0.04)" },
-        { top: "10%", left: "60%", w: "40%", r: "30deg", color: "rgba(0,255,102,0.05)" },
+        { top: "20%", left: "-10%", w: "60%", r: "-20deg", color: "rgba(0, 122, 255,0.06)" },
+        { top: "60%", left: "40%", w: "50%", r: "15deg", color: "rgba(0, 122, 255,0.04)" },
+        { top: "10%", left: "60%", w: "40%", r: "30deg", color: "rgba(0, 122, 255,0.05)" },
       ].map((s, i) => (
         <motion.div
           key={i}
@@ -128,16 +128,16 @@ export default function Hero({ eyebrow, headline, subheadline, ctaPrimary, ctaSe
   return (
     <section
       ref={containerRef}
-      className={`relative overflow-hidden flex items-center ${isHome ? "min-h-screen" : "min-h-[70vh] pt-20"}`}
-      style={{ background: "linear-gradient(135deg, #060f1e 0%, #0B1F3A 40%, #0a1f3a 70%, #060f1e 100%)" }}
+      className={`relative overflow-hidden flex items-center ${isHome ? "min-min-h-[80vh]" : "min-h-[70vh] pt-20"}`}
+      style={{ background: "linear-gradient(135deg, #09090b 0%, #0B1F3A 40%, #0a1f3a 70%, #09090b 100%)" }}
     >
       {/* Background layer */}
       {imageSrc && (
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-cover bg-center opacity-100" style={{ backgroundImage: `url(${imageSrc})` }} />
-          <div className="absolute inset-0 bg-[#030c18]/40 mix-blend-multiply z-10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#060f1e]/90 via-[#030c18]/60 to-transparent z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060f1e]/90 to-transparent z-10" />
+          <div className="absolute inset-0 bg-[#09090b]/40 mix-blend-multiply z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#09090b]/90 via-[#09090b]/60 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#09090b]/90 to-transparent z-10" />
         </div>
       )}
 
@@ -147,10 +147,10 @@ export default function Hero({ eyebrow, headline, subheadline, ctaPrimary, ctaSe
       {/* Radial glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-20"
-          style={{ background: "radial-gradient(circle, rgba(57,255,20,0.3) 0%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(0, 122, 255,0.3) 0%, transparent 70%)" }}
         />
         <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, rgba(57,255,20,0.4) 0%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(0, 122, 255,0.4) 0%, transparent 70%)" }}
         />
       </div>
 
@@ -164,7 +164,7 @@ export default function Hero({ eyebrow, headline, subheadline, ctaPrimary, ctaSe
       <div className="scanlines absolute inset-0 pointer-events-none" />
 
       {/* Content */}
-      <motion.div style={isHome ? { y } : undefined} className="relative z-10 w-full max-w-7xl mx-auto px-5 lg:px-10 py-24">
+      <motion.div style={isHome ? { y } : undefined} className="relative z-10 w-full max-w-7xl mx-auto px-5 lg:px-10 py-14">
         {/* Eyebrow */}
         {eyebrow && (
           <motion.div
@@ -174,13 +174,13 @@ export default function Hero({ eyebrow, headline, subheadline, ctaPrimary, ctaSe
             className="flex items-center gap-3 mb-6"
           >
             <motion.div
-              className="w-10 h-px bg-[#39FF14]"
+              className="w-10 h-px bg-[#007AFF]"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              style={{ transformOrigin: "left", boxShadow: "0 0 8px #39FF14" }}
+              style={{ transformOrigin: "left", boxShadow: "0 0 8px #007AFF" }}
             />
-            <span className="sport-badge bg-[rgba(57,255,20,0.1)] text-[#39FF14] border border-[rgba(57,255,20,0.3)]">
+            <span className="sport-badge bg-[rgba(0, 122, 255,0.1)] text-[#007AFF] border border-[rgba(0, 122, 255,0.3)]">
               {eyebrow}
             </span>
           </motion.div>
@@ -199,8 +199,8 @@ export default function Hero({ eyebrow, headline, subheadline, ctaPrimary, ctaSe
           className="h-1 w-24 mb-6 rounded"
           style={{
             transformOrigin: "left",
-            background: "linear-gradient(90deg, #39FF14, #39FF14)",
-            boxShadow: "0 0 20px rgba(57,255,20,0.6)",
+            background: "linear-gradient(90deg, #007AFF, #007AFF)",
+            boxShadow: "0 0 20px rgba(0, 122, 255,0.6)",
           }}
         />
 
@@ -256,7 +256,7 @@ export default function Hero({ eyebrow, headline, subheadline, ctaPrimary, ctaSe
               <motion.div
                 key={s.l}
                 className="glass px-5 py-4"
-                whileHover={{ borderColor: "rgba(57,255,20,0.4)", background: "rgba(57,255,20,0.05)" }}
+                whileHover={{ borderColor: "rgba(0, 122, 255,0.4)", background: "rgba(0, 122, 255,0.05)" }}
               >
                 <div className="font-display text-3xl font-bold gradient-text-electric leading-none mb-1">{s.v}</div>
                 <div className="text-white/40 text-xs tracking-widest uppercase">{s.l}</div>
@@ -274,22 +274,22 @@ export default function Hero({ eyebrow, headline, subheadline, ctaPrimary, ctaSe
           transition={{ duration: 2, repeat: Infinity }}
         >
           <span className="text-white/30 text-xs tracking-[0.25em] uppercase">Scroll</span>
-          <ChevronDown size={16} className="text-[#39FF14]" style={{ filter: "drop-shadow(0 0 6px #39FF14)" }} />
+          <ChevronDown size={16} className="text-[#007AFF]" style={{ filter: "drop-shadow(0 0 6px #007AFF)" }} />
         </motion.div>
       )}
 
       {/* Corner decorations */}
       <div className="absolute top-0 right-0 w-64 h-64 pointer-events-none opacity-20">
         <svg viewBox="0 0 200 200" fill="none">
-          <motion.path d="M200,0 L200,200 L0,200" stroke="#39FF14" strokeWidth="0.5"
+          <motion.path d="M200,0 L200,200 L0,200" stroke="#007AFF" strokeWidth="0.5"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 1 }} />
-          <motion.path d="M200,50 L200,200 L50,200" stroke="#39FF14" strokeWidth="0.3"
+          <motion.path d="M200,50 L200,200 L50,200" stroke="#007AFF" strokeWidth="0.3"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 1.3 }} />
         </svg>
       </div>
       <div className="absolute bottom-0 left-0 w-48 h-48 pointer-events-none opacity-20">
         <svg viewBox="0 0 200 200" fill="none">
-          <motion.path d="M0,200 L0,0 L200,0" stroke="#39FF14" strokeWidth="0.5"
+          <motion.path d="M0,200 L0,0 L200,0" stroke="#007AFF" strokeWidth="0.5"
             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 0.5 }} />
         </svg>
       </div>

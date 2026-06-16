@@ -14,10 +14,10 @@ interface SectionHeadingProps {
 }
 
 export default function SectionHeading({
-  eyebrow, title, subtitle, align = "left", className, accentColor = "#39FF14", theme = "dark"
+  eyebrow, title, subtitle, align = "left", className, accentColor = "#007AFF", theme = "dark"
 }: SectionHeadingProps) {
   return (
-    <div className={cn("mb-14", align === "center" && "text-center", className)}>
+    <div className={cn("mb-12", align === "center" && "text-center", className)}>
       {eyebrow && (
         <motion.div
           initial={{ opacity: 0, x: align === "center" ? 0 : -20 }}

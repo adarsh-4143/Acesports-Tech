@@ -27,7 +27,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden" style={{ background: "#030c18" }}>
+    <footer className="relative overflow-hidden" style={{ background: "#09090b" }}>
       {/* Grid overlay */}
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
 
@@ -40,8 +40,8 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-px" style={{ background: "#39FF14", boxShadow: "0 0 8px #39FF14" }} />
-                <span className="text-[#39FF14] text-xs tracking-[0.3em] uppercase font-semibold">Ready to Build?</span>
+                <div className="w-8 h-px" style={{ background: "#007AFF", boxShadow: "0 0 8px #007AFF" }} />
+                <span className="text-[#007AFF] text-xs tracking-[0.3em] uppercase font-semibold">Ready to Build?</span>
               </div>
               <h3 className="font-display text-4xl lg:text-5xl font-bold text-white uppercase leading-tight">
                 Transform Your <span className="gradient-text-electric">Space</span>
@@ -73,7 +73,7 @@ export default function Footer() {
               <div className="relative bg-white/95 backdrop-blur-md p-2.5 rounded-xl inline-flex shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-transform duration-300 group-hover:scale-105">
                 <img src="/logo.svg" alt="ACE Sports Tech" className="h-[40px] lg:h-[50px] w-auto object-contain relative z-10" />
                 <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ background: "radial-gradient(circle, rgba(57,255,20,0.15) 0%, transparent 70%)" }} />
+                  style={{ background: "radial-gradient(circle, rgba(0, 122, 255,0.15) 0%, transparent 70%)" }} />
               </div>
             </Link>
 
@@ -83,21 +83,21 @@ export default function Footer() {
 
             <div className="space-y-2">
               <div className="flex items-start gap-3">
-                <MapPin size={14} className="text-[#39FF14] mt-0.5 shrink-0" />
+                <MapPin size={14} className="text-[#007AFF] mt-0.5 shrink-0" />
                 <p className="text-white/40 text-xs leading-relaxed">J39 Centre Portion, West Patel Nagar,<br />New Delhi – 110008</p>
               </div>
               <div className="flex items-start gap-3">
-                <Phone size={14} className="text-[#39FF14] mt-0.5 shrink-0" />
+                <Phone size={14} className="text-[#007AFF] mt-0.5 shrink-0" />
                 <div className="flex flex-col gap-1">
-                  <a href="tel:7368040888" className="text-white/40 text-xs hover:text-[#39FF14] transition-colors">+91 73680 40888</a>
-                  <a href="tel:9818933156" className="text-white/40 text-xs hover:text-[#39FF14] transition-colors">+91 98189 33156</a>
+                  <a href="tel:7368040888" className="text-white/40 text-xs hover:text-[#007AFF] transition-colors">+91 73680 40888</a>
+                  <a href="tel:9818933156" className="text-white/40 text-xs hover:text-[#007AFF] transition-colors">+91 98189 33156</a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Mail size={14} className="text-[#39FF14] mt-0.5 shrink-0" />
+                <Mail size={14} className="text-[#007AFF] mt-0.5 shrink-0" />
                 <div className="flex flex-col gap-1">
-                  <a href="mailto:enquire.acesports@gmail.com" className="text-white/40 text-xs hover:text-[#39FF14] transition-colors">enquire.acesports@gmail.com</a>
-                  <a href="mailto:info@acesportstech.com" className="text-white/40 text-xs hover:text-[#39FF14] transition-colors">info@acesportstech.com</a>
+                  <a href="mailto:enquire.acesports@gmail.com" className="text-white/40 text-xs hover:text-[#007AFF] transition-colors">enquire.acesports@gmail.com</a>
+                  <a href="mailto:info@acesportstech.com" className="text-white/40 text-xs hover:text-[#007AFF] transition-colors">info@acesportstech.com</a>
                 </div>
               </div>
             </div>
@@ -105,7 +105,7 @@ export default function Footer() {
             {/* Certifications */}
             <div className="mt-8 flex flex-wrap gap-2">
               {["FIFA", "IAAF", "FIBA", "ITF"].map((cert) => (
-                <span key={cert} className="text-[10px] font-display font-semibold tracking-widest px-2.5 py-1 border border-[rgba(57,255,20,0.2)] text-[#39FF14]/60">
+                <span key={cert} className="text-[10px] font-display font-semibold tracking-widest px-2.5 py-1 border border-[rgba(0, 122, 255,0.2)] text-[#007AFF]/60">
                   {cert}
                 </span>
               ))}
@@ -114,7 +114,7 @@ export default function Footer() {
 
           {/* Links and Giant Text Area */}
           <div className="lg:col-span-8 flex flex-col justify-between">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-10 mb-10 lg:mb-16">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-14 mb-10 lg:mb-10">
               {Object.entries(footerLinks).map(([category, links]) => (
                 <div key={category}>
                   <p className="font-display text-white text-xs font-semibold tracking-[0.25em] uppercase mb-5">
@@ -124,9 +124,9 @@ export default function Footer() {
                     {links.map((link) => (
                       <li key={link.label}>
                         <Link href={link.href}
-                          className="flex items-center gap-1.5 text-white/35 text-xs hover:text-[#39FF14] transition-colors duration-200 group"
+                          className="flex items-center gap-1.5 text-white/35 text-xs hover:text-[#007AFF] transition-colors duration-200 group"
                         >
-                          <ChevronRight size={10} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#39FF14]" />
+                          <ChevronRight size={10} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#007AFF]" />
                           {link.label}
                         </Link>
                       </li>
@@ -142,7 +142,7 @@ export default function Footer() {
                 className="font-display font-black uppercase w-full leading-[0.8] tracking-tighter"
                 style={{ 
                   fontSize: "clamp(3rem, 8vw, 9rem)",
-                  background: "linear-gradient(90deg, #39FF14 0%, #00d4ff 50%, #ff3b5c 100%)",
+                  background: "linear-gradient(90deg, #007AFF 0%, #007AFF 50%, #ff3b5c 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   opacity: 0.15
@@ -163,7 +163,7 @@ export default function Footer() {
           </p>
           <p className="text-white/40 text-xs text-center sm:text-right">
             Designed and Developed by{" "}
-            <a href="https://nighwantech.com" target="_blank" rel="noopener noreferrer" className="text-[#39FF14] hover:text-white transition-colors">
+            <a href="https://nighwantech.com" target="_blank" rel="noopener noreferrer" className="text-[#007AFF] hover:text-white transition-colors">
               Nighwan Technology
             </a>
           </p>
@@ -172,7 +172,7 @@ export default function Footer() {
 
       {/* Bottom glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-1 pointer-events-none"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(57,255,20,0.3), transparent)" }} />
+        style={{ background: "linear-gradient(90deg, transparent, rgba(0, 122, 255,0.3), transparent)" }} />
     </footer>
   );
 }

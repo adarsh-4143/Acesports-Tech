@@ -79,7 +79,7 @@ export default function Lightbox({ gallery }: LightboxProps) {
           {images.length > 1 && (
             <button
               onClick={goPrev}
-              className="absolute left-2 lg:left-8 text-white/40 hover:text-[#39FF14] hover:scale-110 transition-all z-[110] p-3 lg:p-4 bg-black/40 rounded-full backdrop-blur-md border border-white/10"
+              className="absolute left-2 lg:left-8 text-white/40 hover:text-[#007AFF] hover:scale-110 transition-all z-[110] p-3 lg:p-4 bg-black/40 rounded-full backdrop-blur-md border border-white/10"
             >
               <ChevronLeft size={36} />
             </button>
@@ -88,7 +88,7 @@ export default function Lightbox({ gallery }: LightboxProps) {
           {images.length > 1 && (
             <button
               onClick={goNext}
-              className="absolute right-2 lg:right-8 text-white/40 hover:text-[#39FF14] hover:scale-110 transition-all z-[110] p-3 lg:p-4 bg-black/40 rounded-full backdrop-blur-md border border-white/10"
+              className="absolute right-2 lg:right-8 text-white/40 hover:text-[#007AFF] hover:scale-110 transition-all z-[110] p-3 lg:p-4 bg-black/40 rounded-full backdrop-blur-md border border-white/10"
             >
               <ChevronRight size={36} />
             </button>
@@ -118,7 +118,7 @@ export default function Lightbox({ gallery }: LightboxProps) {
 
         {/* Right Side: Details Panel */}
         <div 
-          className="w-full lg:w-[400px] xl:w-[450px] shrink-0 bg-gradient-to-b from-[#060f1e] to-[#030812] p-8 lg:p-12 flex flex-col justify-center h-[40vh] lg:h-full"
+          className="w-full lg:w-[400px] xl:w-[450px] shrink-0 bg-gradient-to-b from-[#09090b] to-[#030812] p-8 lg:p-8 flex flex-col justify-center h-[40vh] lg:h-full"
           onClick={(e) => e.stopPropagation()}
         >
           <motion.div 
@@ -126,7 +126,7 @@ export default function Lightbox({ gallery }: LightboxProps) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <p className="inline-block px-3 py-1 bg-[#39FF14]/10 border border-[#39FF14]/20 text-[#39FF14] text-[10px] font-bold tracking-[0.2em] uppercase rounded-full mb-6">
+            <p className="inline-block px-3 py-1 bg-[#007AFF]/10 border border-[#007AFF]/20 text-[#007AFF] text-[10px] font-bold tracking-[0.2em] uppercase rounded-full mb-6">
               {gallery.category}
             </p>
             <h3 className="text-3xl lg:text-4xl font-display font-extrabold text-white mb-6 leading-tight">

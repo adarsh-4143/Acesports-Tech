@@ -26,11 +26,11 @@ function BlogCard({ blog, index }: { blog: Blog; index: number }) {
 
   return (
     <div
-      className="group relative flex flex-col h-full bg-white border border-slate-200 hover:border-[#39FF14] rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(57,255,20,0.15)]"
+      className="group relative flex flex-col h-full bg-white border border-slate-200 hover:border-[#007AFF] rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0, 122, 255,0.15)]"
       style={{ animationDelay: `${index * 100}ms` }}
     >
       <div className="relative h-48 w-full overflow-hidden bg-slate-100">
-        <div className="absolute inset-0 bg-[#060f1e]/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+        <div className="absolute inset-0 bg-[#09090b]/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
         <img
           src={getAssetUrl(blog.featured_image) || "https://images.unsplash.com/photo-1542652694-40abf526446e?q=80&w=2070&auto=format&fit=crop"}
           alt={blog.title}
@@ -38,12 +38,12 @@ function BlogCard({ blog, index }: { blog: Blog; index: number }) {
         />
         {/* Date Badge */}
         <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/20 shadow-sm flex items-center gap-1.5">
-          <Calendar size={12} className="text-[#39FF14]" />
+          <Calendar size={12} className="text-[#007AFF]" />
           <span className="text-[10px] font-bold tracking-widest uppercase text-slate-800">{date}</span>
         </div>
         {blog.readTime && (
-          <div className="absolute top-4 right-4 z-20 bg-[#060f1e]/80 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-sm flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#39FF14]"></span>
+          <div className="absolute top-4 right-4 z-20 bg-[#09090b]/80 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-sm flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
             <span className="text-[10px] font-bold tracking-widest uppercase text-white">{blog.readTime}</span>
           </div>
         )}
@@ -52,16 +52,16 @@ function BlogCard({ blog, index }: { blog: Blog; index: number }) {
       <div className="flex flex-col flex-grow p-6">
         <div className="flex items-center gap-2 mb-3">
           {blog.authorImg ? (
-            <img src={getAssetUrl(blog.authorImg) || ""} alt={author} className="w-5 h-5 rounded-full object-cover border border-[#39FF14]" />
+            <img src={getAssetUrl(blog.authorImg) || ""} alt={author} className="w-5 h-5 rounded-full object-cover border border-[#007AFF]" />
           ) : (
-            <div className="w-4 h-[2px] bg-[#39FF14]" />
+            <div className="w-4 h-[2px] bg-[#007AFF]" />
           )}
-          <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#39FF14]">
+          <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#007AFF]">
             {author}
           </span>
         </div>
         
-        <h3 className="text-2xl font-display font-extrabold text-slate-900 leading-tight mb-3 group-hover:text-[#39FF14] transition-colors">
+        <h3 className="text-2xl font-display font-extrabold text-slate-900 leading-tight mb-3 group-hover:text-[#007AFF] transition-colors">
           {blog.title}
         </h3>
         
@@ -71,7 +71,7 @@ function BlogCard({ blog, index }: { blog: Blog; index: number }) {
 
         <Link
           href={`/blog/${blog.slug}`}
-          className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-900 group-hover:text-[#39FF14] transition-colors mt-auto w-fit"
+          className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-900 group-hover:text-[#007AFF] transition-colors mt-auto w-fit"
         >
           Read Article <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
         </Link>
@@ -112,7 +112,7 @@ export default async function BlogPage() {
           </div>
           
           {blogs.length === 0 ? (
-            <div className="text-center py-20 text-slate-500">
+            <div className="text-center py-16 text-slate-500">
               No blogs found.
             </div>
           ) : (
