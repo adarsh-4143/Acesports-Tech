@@ -27,6 +27,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
   const pathname = usePathname();
   const { isLoggedIn, login, logout } = useAuth();
   const { cart } = useCart();
@@ -39,7 +40,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  useEffect(() => { setMenuOpen(false); }, [pathname]);
+  useEffect(() => {
+    setMenuOpen(false);
+    setMobileDropdownOpen(null);
+  }, [pathname]);
 
   return (
     <>
@@ -164,7 +168,7 @@ export default function Navbar() {
 
           {/* Mobile hamburger & Icons */}
           <div className="flex lg:hidden items-center gap-4">
-            <Link href="/cart" className="relative text-slate-600">
+            <Link href="/cart" className="relative text-slate-600 hover:text-slate-900 transition-colors">
               <ShoppingCart size={20} />
               {cartItemCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-[#007AFF] text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
@@ -172,6 +176,22 @@ export default function Navbar() {
                 </span>
               )}
             </Link>
+
+            {isLoggedIn ? (
+              <>
+                <Link href="/profile" className="text-slate-600 hover:text-blue-600 transition-colors" title="Profile">
+                  <User size={20} />
+                </Link>
+                <button onClick={logout} className="text-slate-600 hover:text-red-500 transition-colors" title="Logout">
+                  <LogOut size={20} />
+                </button>
+              </>
+            ) : (
+              <Link href="/login" className="text-slate-600 hover:text-blue-600 transition-colors" title="Login">
+                <User size={20} />
+              </Link>
+            )}
+
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="w-10 h-10 flex items-center justify-center bg-slate-50 border border-slate-200 rounded text-slate-800"
@@ -190,56 +210,128 @@ export default function Navbar() {
             animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
             exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 flex flex-col pt-20"
+            className="fixed inset-0 z-40 flex flex-col pt-24 pb-8 overflow-y-auto"
             style={{ background: "rgba(6,15,30,0.97)", backdropFilter: "blur(30px)" }}
           >
             {/* Neon grid overlay */}
-            <div className="absolute inset-0 grid-pattern opacity-30" />
+            <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
 
-            <nav className="relative z-10 flex flex-col px-8 pt-8 gap-2">
+            <nav className="relative z-10 flex flex-col px-8 pt-2 gap-1">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.label}
                   initial={{ opacity: 0, x: -40 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
                 >
                   {link.dropdown ? (
-                    <div className="py-4 border-b border-white/5">
-                      <span className="font-condensed text-4xl font-bold text-white tracking-wide block mb-4">
-                        {link.label}
-                      </span>
-                      <div className="flex flex-col gap-3 pl-4">
-                        {link.dropdown.map((subItem) => (
-                          <Link
-                            key={subItem.href}
-                            href={subItem.href}
-                            className="flex items-center justify-between group"
+                    <div className="py-2.5 border-b border-white/5">
+                      <button
+                        onClick={() => setMobileDropdownOpen(mobileDropdownOpen === link.label ? null : link.label)}
+                        className="w-full flex items-center justify-between py-1 text-left group"
+                      >
+                        <span className="font-condensed text-2xl font-bold text-white group-hover:text-[#007AFF] transition-colors tracking-wide">
+                          {link.label}
+                        </span>
+                        <ChevronDown
+                          size={18}
+                          className={`text-white/30 transition-transform duration-300 ${mobileDropdownOpen === link.label ? "rotate-180 text-[#007AFF]" : ""}`}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {mobileDropdownOpen === link.label && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="flex flex-col gap-2.5 pl-4 mt-2 overflow-hidden"
                           >
-                            <span className="font-condensed text-2xl font-bold text-white/70 group-hover:text-[#007AFF] transition-colors tracking-wide">
-                              {subItem.label}
-                            </span>
-                            <ChevronRight size={16} className="text-white/30 group-hover:text-[#007AFF] transition-colors" />
-                          </Link>
-                        ))}
-                      </div>
+                            {link.dropdown.map((subItem) => (
+                              <Link
+                                key={subItem.href}
+                                href={subItem.href}
+                                className="flex items-center justify-between py-1.5 group"
+                              >
+                                <span className="font-condensed text-lg font-bold text-white/70 group-hover:text-[#007AFF] transition-colors tracking-wide">
+                                  {subItem.label}
+                                </span>
+                                <ChevronRight size={14} className="text-white/30 group-hover:text-[#007AFF] transition-colors" />
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   ) : (
                     <Link
                       href={link.href!}
-                      className="flex items-center justify-between py-4 border-b border-white/5 group"
+                      className="flex items-center justify-between py-2.5 border-b border-white/5 group"
                     >
-                      <span className="font-condensed text-4xl font-bold text-white group-hover:text-[#007AFF] transition-colors tracking-wide">
+                      <span className="font-condensed text-2xl font-bold text-white group-hover:text-[#007AFF] transition-colors tracking-wide">
                         {link.label}
                       </span>
-                      <ChevronRight size={20} className="text-white/30 group-hover:text-[#007AFF] transition-colors" />
+                      <ChevronRight size={18} className="text-white/30 group-hover:text-[#007AFF] transition-colors" />
                     </Link>
                   )}
                 </motion.div>
               ))}
+              {isLoggedIn ? (
+                <>
+                  <motion.div
+                    initial={{ opacity: 0, x: -40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: navLinks.length * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Link
+                      href="/profile"
+                      className="flex items-center justify-between py-2.5 border-b border-white/5 group"
+                    >
+                      <span className="font-condensed text-2xl font-bold text-white group-hover:text-[#007AFF] transition-colors tracking-wide flex items-center gap-3">
+                        <User size={20} className="text-[#007AFF]" /> Profile
+                      </span>
+                      <ChevronRight size={18} className="text-white/30 group-hover:text-[#007AFF] transition-colors" />
+                    </Link>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: (navLinks.length + 1) * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <button
+                      onClick={() => {
+                        logout();
+                        setMenuOpen(false);
+                      }}
+                      className="flex items-center justify-between w-full py-2.5 border-b border-white/5 group text-left"
+                    >
+                      <span className="font-condensed text-2xl font-bold text-white group-hover:text-red-500 transition-colors tracking-wide flex items-center gap-3">
+                        <LogOut size={20} className="text-red-500" /> Logout
+                      </span>
+                      <ChevronRight size={18} className="text-white/30 group-hover:text-red-500 transition-colors" />
+                    </button>
+                  </motion.div>
+                </>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, x: -40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Link
+                    href="/login"
+                    className="flex items-center justify-between py-2.5 border-b border-white/5 group"
+                  >
+                    <span className="font-condensed text-2xl font-bold text-white group-hover:text-[#007AFF] transition-colors tracking-wide flex items-center gap-3">
+                      <User size={20} className="text-[#007AFF]" /> Login / Register
+                    </span>
+                    <ChevronRight size={18} className="text-white/30 group-hover:text-[#007AFF] transition-colors" />
+                  </Link>
+                </motion.div>
+              )}
             </nav>
 
-            <div className="relative z-10 mt-auto px-8 pb-12">
+            <div className="relative z-10 mt-6 px-8 pb-6">
               <button
                 onClick={() => {
                   window.dispatchEvent(new Event("openEnquiryPopup"));
