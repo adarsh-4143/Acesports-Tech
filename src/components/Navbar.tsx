@@ -14,10 +14,12 @@ const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
   { label: "Products", href: "/products" },
-  { label: "Media", href: "#", dropdown: [
-    { label: "Image Gallery", href: "/media/image-gallery" },
-    { label: "Video Gallery", href: "/media/video-gallery" }
-  ]},
+  {
+    label: "Media", href: "#", dropdown: [
+      { label: "Image Gallery", href: "/media/image-gallery" },
+      { label: "Video Gallery", href: "/media/video-gallery" }
+    ]
+  },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
@@ -28,7 +30,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const { isLoggedIn, login, logout } = useAuth();
   const { cart } = useCart();
-  
+
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   useEffect(() => {
@@ -45,11 +47,10 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
-          scrolled 
-            ? "bg-white/90 backdrop-blur-xl shadow-[0_10px_30px_-10px_rgba(0,0,0,0.08)] border-slate-200/50" 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${scrolled
+            ? "bg-white/90 backdrop-blur-xl shadow-[0_10px_30px_-10px_rgba(0,0,0,0.08)] border-slate-200/50"
             : "bg-white/70 backdrop-blur-md border-transparent"
-        }`}
+          }`}
       >
 
         <div className="w-full max-w-[1400px] mx-auto px-4 lg:px-8 flex items-center justify-between h-[80px] lg:h-[90px] transition-all duration-500">
@@ -74,9 +75,8 @@ export default function Navbar() {
               const active = pathname === link.href || (link.dropdown && pathname.startsWith("/media"));
               return link.dropdown ? (
                 <div key={link.label} className="relative group">
-                  <div className={`flex items-center gap-1 cursor-pointer relative px-5 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-300 rounded-full overflow-hidden ${
-                    active ? "text-[#09090b]" : "text-slate-500 hover:text-slate-900"
-                  }`}>
+                  <div className={`flex items-center gap-1 cursor-pointer relative px-5 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-300 rounded-full overflow-hidden ${active ? "text-[#09090b]" : "text-slate-500 hover:text-slate-900"
+                    }`}>
                     {active && (
                       <motion.div
                         layoutId="nav-pill"
@@ -105,9 +105,8 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href!}
-                  className={`relative px-5 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-300 rounded-full overflow-hidden group ${
-                    active ? "text-[#09090b]" : "text-slate-500 hover:text-slate-900"
-                  }`}
+                  className={`relative px-5 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-300 rounded-full overflow-hidden group ${active ? "text-[#09090b]" : "text-slate-500 hover:text-slate-900"
+                    }`}
                 >
                   {/* Active background */}
                   {active && (
@@ -137,7 +136,7 @@ export default function Navbar() {
                   </span>
                 )}
               </Link>
-              
+
               {isLoggedIn ? (
                 <>
                   <Link href="/profile" className="text-slate-600 hover:text-blue-600 transition-colors" title="Profile">
@@ -154,8 +153,8 @@ export default function Navbar() {
               )}
             </div>
 
-            <button 
-              onClick={() => window.dispatchEvent(new Event("openEnquiryPopup"))} 
+            <button
+              onClick={() => window.dispatchEvent(new Event("openEnquiryPopup"))}
               className="btn-electric text-xs"
             >
               <Zap size={13} />
@@ -241,11 +240,11 @@ export default function Navbar() {
             </nav>
 
             <div className="relative z-10 mt-auto px-8 pb-12">
-              <button 
+              <button
                 onClick={() => {
                   window.dispatchEvent(new Event("openEnquiryPopup"));
                   setMenuOpen(false);
-                }} 
+                }}
                 className="btn-electric w-full justify-center"
               >
                 <Zap size={15} />
